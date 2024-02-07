@@ -10,7 +10,7 @@
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico">
-    @vite(['resources/css/app.min.css', 'resources/css/bootstrap.min.css', 'resources/css/icons.min.css', 'resources/css/bootstrap-datepicker.min.css'])
+   
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/icons.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/app.min.css') }}">
