@@ -21,6 +21,7 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
+        
         // Mencoba untuk melakukan login
         if (Auth::attempt(['nidn' => $request->nidn, 'password' => $request->password])) {
             $request->session()->regenerate();

@@ -68,7 +68,7 @@
 
 
                                 <form id="loginForm" method="post" action="{{ route('login') }}" class="needs-validation"
-                                novalidate>
+                                >
                                     @csrf
                                     <div class="mb-3">
                                         <label for="username" class="form-label">ID Pengguna (NIDN/NIP/NIM)</label>
