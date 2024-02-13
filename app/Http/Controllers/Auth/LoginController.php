@@ -23,13 +23,17 @@ class LoginController extends Controller
 
         // Mencoba untuk melakukan login
         if (Auth::attempt(['nidn' => $request->nidn, 'password' => $request->password])) {
-            // Jika login berhasil, arahkan ke halaman sesuai dengan level user
+            $request->session()->regenerate();
             return redirect()->route('dashboard');
         } else {
             // Jika login gagal, kembalikan ke halaman login dengan pesan error
             return back()->withErrors(['nidn' => 'NIDN atau password salah.'])->withInput();
         }
+
+        
     }
+
+   
 
     public function logout(Request $request)
     {
