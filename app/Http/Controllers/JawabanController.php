@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
 use App\Models\Tugas;
 use App\Models\Kelasuser;
 use App\Models\Tugasuser;
@@ -18,9 +19,11 @@ class JawabanController extends Controller
 
         $tgl_kirim = Carbon::now()->toDateTimeString();
         $user = Auth::user();
-        $kelas_user = Kelasuser::where('user_id', $user->id)->first();
-        $tugas = Tugas::find($id);
 
+        $kelas = Kelas::where('kode_kelas', $kode_kelas)->first();
+        $kelas_user = Kelasuser::where('user_id', $user->id)
+                                ->where('kelas_id',$kelas->id )->first();
+        $tugas = Tugas::find($id);
 
         $request->validate([
             'deskripsi' => 'nullable',
@@ -65,12 +68,19 @@ class JawabanController extends Controller
 
     public function update(Request $request, $kode_kelas, $id)
     {
-       
+        
+        
+        
+      
         $user = Tugasuser::where('kelas_user_id', $id)->first();
-
+        // $kelas_user = Kelasuser::where('id', $user->id)->first();
+        // dd($user);
+                
         $user->update($request->all());
+ 
+   
 
-        return redirect()->route('e-learning.tugas.detail',['kode_kelas' => $kode_kelas, 'id'=>$id])->with('success', 'Nilai berhasil disimpan.');
+        return redirect()->route('e-learning.tugas.detail',['kode_kelas' => $kode_kelas, 'id'=>$user->tugas_id])->with('success', 'Nilai berhasil disimpan.');
         
     }
 

@@ -83,7 +83,7 @@ class TugasController extends Controller
 
         $peserta = Kelasuser::where('kelas_id', $kelas->id)->get();
         $jawaban = Tugasuser::where('tugas_id', $tugas->id)->get();
-       
+
         
       
         return view('elearning.dosen.tugas.detail',compact(['kelas','tugas','peserta','jawaban','profil']),[
