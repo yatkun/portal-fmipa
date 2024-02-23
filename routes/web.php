@@ -18,6 +18,7 @@ use App\Http\Controllers\JawabanController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\MahasiswaProfileController;
 use App\Http\Controllers\TugasController;
+use App\Http\Controllers\ChangePasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,10 @@ Route::middleware(['auth', 'checkRole:Dosen,Admin'])->group(function () {
     Route::post('/dokumen/pribadi/store', [DokumenController::class, 'store'])->name('dokumen.store');
     Route::put('/dokumen/pribadi/{id}', [DokumenController::class, 'update'])->name('dokumen.update');
     Route::delete('/dokumen/pribadi/{id}', [DokumenController::class, 'destroy'])->name('dokumen.destroy');
+
+    Route::get('/ganti-password', [ChangePasswordController::class, 'showChangePasswordForm'])->name('change.password');
+    Route::post('/ganti-password', [ChangePasswordController::class, 'changePassword'])->name('change.password.post');
+
 });
 
 
