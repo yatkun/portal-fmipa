@@ -214,7 +214,7 @@
             aria-hidden="true" style="display: none;">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <form action="{{ route('nilai.update', ['kode_kelas' => $kelas->kode_kelas, 'id' => $tugas->id]) }}" method="post">
+                    <form action="{{ route('nilai.update', ['kode_kelas' => $kelas->kode_kelas, 'id' => $item->kelas_user_id]) }}" method="post">
                     @csrf
                     @method('put')
                         <div class="modal-header">

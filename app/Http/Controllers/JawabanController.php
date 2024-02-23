@@ -66,9 +66,10 @@ class JawabanController extends Controller
     public function update(Request $request, $kode_kelas, $id)
     {
        
-        $user = Tugasuser::find($id);
+        $user = Tugasuser::where('kelas_user_id', $id)->first();
+
         $user->update($request->all());
-        dd($request);
+
         return redirect()->route('e-learning.tugas.detail',['kode_kelas' => $kode_kelas, 'id'=>$id])->with('success', 'Nilai berhasil disimpan.');
         
     }
