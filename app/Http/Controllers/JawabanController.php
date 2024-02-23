@@ -68,6 +68,7 @@ class JawabanController extends Controller
        
         $user = Tugasuser::find($id);
         $user->update($request->all());
+        dd($request);
         return redirect()->route('e-learning.tugas.detail',['kode_kelas' => $kode_kelas, 'id'=>$id])->with('success', 'Nilai berhasil disimpan.');
         
     }
