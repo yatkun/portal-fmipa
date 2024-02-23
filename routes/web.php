@@ -36,6 +36,9 @@ Route::middleware(['auth', 'checkRole:Dosen,Mahasiswa,Admin'])->group(function (
     // Dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
+    Route::get('/ganti-password', [ChangePasswordController::class, 'showChangePasswordForm'])->name('change.password');
+    Route::post('/ganti-password', [ChangePasswordController::class, 'changePassword'])->name('change.password.post');
+
     // Dokumen-pribadi
 
 });
@@ -48,8 +51,7 @@ Route::middleware(['auth', 'checkRole:Dosen,Admin'])->group(function () {
     Route::put('/dokumen/pribadi/{id}', [DokumenController::class, 'update'])->name('dokumen.update');
     Route::delete('/dokumen/pribadi/{id}', [DokumenController::class, 'destroy'])->name('dokumen.destroy');
 
-    Route::get('/ganti-password', [ChangePasswordController::class, 'showChangePasswordForm'])->name('change.password');
-    Route::post('/ganti-password', [ChangePasswordController::class, 'changePassword'])->name('change.password.post');
+  
 
 });
 
