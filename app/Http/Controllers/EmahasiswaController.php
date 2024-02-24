@@ -113,19 +113,15 @@ class EmahasiswaController extends Controller
 
     public function lihatkelas($kode_kelas)
     {
-
-
-
-
-
         $user = Auth::user();
         $profil =  $user->mahasiswaProfile;
         $kelas = Kelas::where('kode_kelas', $kode_kelas)->first();
         $deskripsi = Deskripsikelas::where('kelas_id', $kelas->id)->first();
         $tugas = Tugas::where('kelas_id', $kelas->id)->get();
-        $kelasuser = Kelasuser::where('kelas_id', $kelas->id)->first();
-
+        $kelasuser = Kelasuser::where('kelas_id', $kelas->id)
+                                ->where('user_id', $user->id)->first();
         $kelas_id = Kelasuser::where('kelas_id', $kelas->id)->first();
+
         $jawaban = Tugasuser::where('kelas_user_id', $kelasuser->id)->get();
 
         $tugass = Tugas::where('kelas_id', $kelas->id)
@@ -165,8 +161,8 @@ class EmahasiswaController extends Controller
         $tugas = Tugas::find($id);
  
         $peserta = Kelasuser::where('kelas_id', $kelas->id)->get();
-        $kelasuser = Kelasuser::where('kelas_id', $kelas->id)->first();
-      
+        $kelasuser = Kelasuser::where('kelas_id', $kelas->id)
+                                ->where('user_id', $user->id)->first();
         $jawaban = Tugasuser::where('kelas_user_id', $kelasuser->id)
             ->where('tugas_id', $tugas->id)->first();
 
