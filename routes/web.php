@@ -128,7 +128,7 @@ Route::middleware('auth', 'checkRole:Dosen')->group(function () {
     Route::put('/dosen-profil/update', [DosenProfileController::class, 'update'])->name('update.profil');
     Route::post('/update-profile-image-dosen', [DosenProfileController::class, 'updateProfileImage'])->name('foto.profile');
 
-    Route::put('/e-learning/kelas/{kode_kelas}/tugas/{id}/update-nilai', [JawabanController::class, 'update'])->name('nilai.update');
+    Route::put('/e-learning/kelas/{kode_kelas}/tugas/{id}/{tugas}/update-nilai', [JawabanController::class, 'update'])->name('nilai.update');
 });
 
 Route::middleware('auth', 'checkRole:Mahasiswa')->group(function () {

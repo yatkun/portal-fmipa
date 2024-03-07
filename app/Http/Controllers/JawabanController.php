@@ -66,15 +66,16 @@ class JawabanController extends Controller
         return redirect()->route('kelas.detail', ['kode_kelas' => $kode_kelas])->with('success', 'Jawaban berhasil dikirim.');
     }
 
-    public function update(Request $request, $kode_kelas, $id)
+    public function update(Request $request, $kode_kelas, $id, $tugas)
     {
         
         
-        
-      
-        $user = Tugasuser::where('kelas_user_id', $id)->first();
+        $tugas_id = Tugas::find($tugas);
+
+        $user = Tugasuser::where('kelas_user_id', $id)
+                ->where('tugas_id', $tugas_id->id)->first();
         // $kelas_user = Kelasuser::where('id', $user->id)->first();
-        // dd($user);
+       
                 
         $user->update($request->all());
  
