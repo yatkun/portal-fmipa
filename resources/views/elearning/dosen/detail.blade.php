@@ -22,32 +22,31 @@
                     <div class="card">
                         <div class="card-body border-bottom">
                             <div class="d-flex align-items-center">
-                                <h5 class="mb-0 card-title flex-grow-1"><a
-                                        href="/e-learning/kelas"
+                                <h5 class="mb-0 card-title flex-grow-1"><a href="/e-learning/kelas"
                                         class="btn btn-md btn-info">Kembali</a></h5>
                                 <div class="flex-shrink-0">
 
-                                    
+
 
                                 </div>
                             </div>
                         </div>
                         <div class="card-body ">
                             @if ($message = Session::get('success'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <i class="mdi mdi-check-all me-2"></i>
-                                {{ $message }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
-                            </div>
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <i class="mdi mdi-check-all me-2"></i>
+                                    {{ $message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
                             @endif
                             @if ($message = Session::get('error'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <i class="mdi mdi-check-all me-2"></i>
-                                {{ $message }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
-                            </div>
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <i class="mdi mdi-check-all me-2"></i>
+                                    {{ $message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
                             @endif
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs nav-tabs-custom nav-justified" role="tablist">
@@ -101,13 +100,11 @@
 
                                 </div>
                                 <div class="tab-pane" id="profile1" role="tabpanel">
-                                    <p class="mb-0">
-                                        
-                                    </p>
+                               
                                 </div>
                                 <div class="tab-pane" id="messages1" role="tabpanel">
                                     <p class="mb-0">
-                                        
+
                                     </p>
                                 </div>
 
