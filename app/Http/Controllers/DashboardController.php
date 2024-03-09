@@ -31,6 +31,9 @@ class DashboardController extends Controller
         }else if($user->level == 'Mahasiswa'){
             $profil =  $user->mahasiswaProfile;
             $kelas = Kelasuser::where('user_id', $userid)->count();
+        }else if($user->level == 'Admin'){
+            $profil =  $user->dosenProfile;
+            $kelas = Kelasuser::where('user_id', $userid)->count();
         }
     
         return view('dashboard.index', compact(['dosen','profil','kelas','dokumen']), [
