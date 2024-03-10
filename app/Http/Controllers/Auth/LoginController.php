@@ -24,12 +24,21 @@ class LoginController extends Controller
         
         // Mencoba untuk melakukan login
         if (Auth::attempt(['nidn' => $request->nidn, 'password' => $request->password])) {
-            $request->session()->regenerate();
-            return redirect()->route('dashboard');
+            if (Auth::user()->is_active) {
+                // Jika login berhasil dan akun aktif, redirect ke dashboard
+                $request->session()->regenerate();
+                return redirect()->route('dashboard');
+            } else {
+                // Jika akun tidak aktif, kembalikan ke halaman login dengan pesan error
+                Auth::logout(); // Logout user yang telah login
+                return back()->with('is_active', 'Akun anda dalam tahap review. Silahkan hubungi admin !');
+            }
         } else {
             // Jika login gagal, kembalikan ke halaman login dengan pesan error
-            return back()->withErrors(['nidn' => 'NIDN atau password salah.'])->withInput();
+            return back()->with('nidn', 'ID Pengguna atau Kata Sandi salah.');
         }
+
+        
 
         
     }

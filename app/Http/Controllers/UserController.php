@@ -20,7 +20,8 @@ class UserController extends Controller
     public function mahasiswa_index()
     {
         // Mengambil semua data user dari database
-        $users = User::where('level', 'Mahasiswa')->get();
+        $users = User::where('level', 'Mahasiswa')
+                    ->where('is_active', 1)->get();
         return view('pengguna.mahasiswa.index', compact('users'),[
             'title' => 'Daftar Pengguna'
         ]);
@@ -187,5 +188,39 @@ class UserController extends Controller
         }
     }
 
+
+
+    public function validasi_user()
+    {
+        // Mengambil semua data user dari database
+        $validasi_user = User::where('is_active', 0)->get();
+        return view('pengguna.validasi.index', compact('validasi_user'),[
+            'title' => 'Validasi Pengguna'
+        ]);
+    }
+
+    public function update_validasi_user(Request $request, $id)
+    {
+         // Temukan pengguna berdasarkan ID
+         $user = User::findOrFail($id);
+
+         // Perbarui is_active dari 0 menjadi 1
+         $user->update(['is_active' => 1]);
+ 
+         // Kembalikan respons
+         return back()->with('success', 'Pengguna berhasil divalidasi');
+    }
+
+    public function tolak_user($id)
+    {
+        
+        $data = User::find($id);
+        if ($data) {
+            $data->delete();
+            return back()->with('success', 'Pengguna berhasil ditolak.');
+        } else {
+            return back()->with('error', 'Pengguna gagal ditolak.');
+        }
+    }
 
 }

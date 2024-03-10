@@ -79,6 +79,18 @@
                             <li><a href="/pengguna/mahasiswa" key="t-full-calendar">Mahasiswa</a></li>
                         </ul>
                     </li>
+                    <li class="">
+                        <a href="/validasi" class="waves-effect" aria-expanded="false">
+                            <i class="bx bx-check-double"></i>
+                            @if (isset($valid) && $valid > 0)
+                            <span class="badge rounded-pill bg-danger float-end">{{ $valid }}</span>
+                            @else
+                                
+                            @endif
+                            <span key="t-forms">Validasi</span>
+                        </a>
+                        
+                    </li>
                 @endif
 
                 

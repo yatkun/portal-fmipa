@@ -66,6 +66,24 @@
                                 </div>
                                 @endif
 
+                                @if ($message = Session::get('is_active'))
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <i class="mdi mdi-check-all me-2"></i>
+                                    {{ $message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                                @endif
+
+                                @if ($message = Session::get('nidn'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i class="mdi mdi-check-all me-2"></i>
+                                    {{ $message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                                @endif
+
 
                                 <form id="loginForm" method="post" action="{{ route('login') }}" class="needs-validation"
                                 >

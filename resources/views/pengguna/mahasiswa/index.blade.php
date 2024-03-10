@@ -89,7 +89,7 @@
                                     <th scope="col" style="width: 50px;">#</th>
                                     <th>Nama</th>
                                     <th>NIM</th>
-                                   
+                                 
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -107,7 +107,7 @@
                                     </td>
                                     <td>{{ $user->nama }}</td>
                                     <td>{{ $user->nidn }}</td>
-                                 
+                               
                                     <td>
 
                                         <div class="d-flex gap-1">

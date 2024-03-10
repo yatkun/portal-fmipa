@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Kelas;
 use App\Models\Dokumen;
 use App\Models\Dashboard;
@@ -19,7 +20,7 @@ class DashboardController extends Controller
         $dosen = $user->dosenProfile;
 
         $userid = $user->id;
-        
+        $valid = 0;
         
         // dd($kelas);
         $dokumen = Dokumen::where('user_id', $userid)->count();

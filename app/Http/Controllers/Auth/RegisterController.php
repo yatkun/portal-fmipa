@@ -52,7 +52,8 @@ class RegisterController extends Controller
             'nama' => $request->nama,
             'nidn' => $request->nidn,
             'password' => Hash::make($request->password),
-            'level' => 'Mahasiswa'
+            'level' => 'Mahasiswa',
+            'is_active' => 0,
         ]);
 
         return redirect()->route('login.form')->with('success', 'Pendaftaran berhasil! Silakan masuk.');
