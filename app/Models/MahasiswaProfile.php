@@ -14,4 +14,5 @@ class MahasiswaProfile extends Model
     {
         return $this->belongsTo(User::class);
     }
+
 }
