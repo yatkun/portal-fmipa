@@ -94,6 +94,8 @@ class KelasController extends Controller
         $user = Kelasuser::where('kelas_id', $kelas->id)->get();
         $deskripsi = Deskripsikelas::where('kelas_id', $kelas->id)->first();
         
+      
+        
         if (!$kelas) {
             return abort(404, 'Kelas not found.');
         }

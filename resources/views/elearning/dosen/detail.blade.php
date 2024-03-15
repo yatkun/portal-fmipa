@@ -100,12 +100,56 @@
 
                                 </div>
                                 <div class="tab-pane" id="profile1" role="tabpanel">
-                               
+                                    <div class="row">
+                                        <div class="col-12">
+
+                                            <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Nama Lengkap</th>
+                                                        <th>Prodi</th>
+                                                        <th>Semester</th>
+                                                    </tr>
+                                                </thead>
+
+
+                                                <tbody>
+                                                    @foreach ($user as $i)
+                                                        <tr class="align-middle">
+                                                            <td style="width: 5%">
+                                                                <div class="avatar-xs">
+                                                                    @if (!empty($i->user->mahasiswaProfile->foto))
+                                                                        <!-- Gunakan gambar profil yang telah diunggah -->
+                                                                        <img src="{{ asset('storage/profile_image/' . $i->user->mahasiswaProfile->foto) }}"
+                                                                            alt="Foto Profil"
+                                                                            class="rounded-circle avatar-title"
+                                                                            style="object-fit: cover">
+                                                                    @else
+                                                                        <span class="avatar-title rounded-circle">
+                                                                            {{ substr($i->user->nama, 0, 1) }}
+                                                                        </span>
+                                                                    @endif
+                                                                    
+                                                                </div>
+                                                            </td>
+                                                            <td style="width: 60%">{{ $i->user->nama }}</td>
+                                                            <td style="width: 20%">{{ $i->user->mahasiswaProfile->prodi }}</td>
+                                                            <td style="width: 15%">{{ $i->user->mahasiswaProfile->semester }}</td>
+
+                                                        </tr>
+                                                    @endforeach
+
+                                                </tbody>
+                                            </table>
+
+
+
+                                        </div> <!-- end col -->
+                                    </div> <!-- end row -->
                                 </div>
                                 <div class="tab-pane" id="messages1" role="tabpanel">
-                                    <p class="mb-0">
 
-                                    </p>
                                 </div>
 
                             </div>
