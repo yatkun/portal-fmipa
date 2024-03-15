@@ -134,8 +134,8 @@
                                                                 </div>
                                                             </td>
                                                             <td style="width: 60%">{{ $i->user->nama }}</td>
-                                                            {{-- <td style="width: 20%">{{ optional($i)->user->mahasiswaProfile->prodi }}</td>
-                                                            <td style="width: 15%">{{ optional($i)->user->mahasiswaProfile->semester }}</td> --}}
+                                                            <td style="width: 20%">{{ optional($i)->user->mahasiswaProfile->prodi }}</td>
+                                                            <td style="width: 15%">{{ optional($i)->user->mahasiswaProfile->semester }}</td>
 
                                                         </tr>
                                                     @endforeach
