@@ -49,7 +49,6 @@ class JawabanController extends Controller
                 'tugas_id' => $id,
                 'deskripsi' => $request->deskripsi,
                 'link' => $request->link,
-                'nilai' => 'belum dinilai',
                 'tgl_kirim' => Carbon::now()->toDateTimeString()
             ]);
             $jawaban->update($data);

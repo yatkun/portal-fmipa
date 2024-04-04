@@ -80,12 +80,18 @@
                             </div>
 
                             @if (isset($jawaban))
-                                <h5 class="font-size-15 mt-4">Nilai :</h5>
+                                
                                 @if ($jawaban->nilai == "belum dinilai")
                                 <p class="text-primary">{{ $jawaban->nilai }}</p>
                                     @else
+                                    <h5 class="font-size-15 mt-4">Nilai :</h5>
                                     <h4 class="text-primary">{{ $jawaban->nilai }}</h4>
+
+                                    <h5 class="font-size-15 mt-4">Komentar :</h5>
+                                    <h6 class="text-primary">{{ $jawaban->tanggapan }}</h6>
                                 @endif
+
+
                             @else
                             @endif
 
@@ -109,7 +115,7 @@
                         <div class="card">
 
                             <div class="card-body">
-                                <form method="POST"
+                                <form id="myForm" method="POST"
                                     action="{{ route('jawaban.store', ['kode_kelas' => $kelas->kode_kelas, 'id' => $tugas->id]) }}">
                                     @csrf
 
@@ -142,7 +148,7 @@
                                         <div class="col-md-10">
                                             <a href="{{ route('kelas.detail', ['kode_kelas' => $kelas->kode_kelas]) }}"
                                                 class="btn btn-secondary w-md">Kembali</a>
-                                            <button type="submit" class="btn btn-primary w-md">Kirim tugas</button>
+                                            <button type="button" id="submitButton" class="btn btn-primary w-md">Kirim tugas</button>
                                         </div>
                                     </div>
 
@@ -202,7 +208,26 @@
 
 
         </div>
-        <!-- container-fluid -->
+        
     </div>
     <!-- End Page-content -->
+
+    <script>
+        document.getElementById("submitButton").addEventListener("click", function() {
+            Swal.fire({
+                title: "Yakin memperbaharui link tugas ?",
+                text: "Tanggal pengiriman tugas akan ikut berubah",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, yakin!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById("myForm").submit();
+                }
+            });
+        });
+    </script>
 @endsection

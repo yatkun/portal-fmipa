@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/icons.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/app.min.css') }}">
-
+    <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css"
         href="{{ asset('assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" type="text/css"
@@ -69,6 +69,7 @@
     <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/dashboard.init.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
+    
 
 
     <script src="{{ asset('assets/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
@@ -85,7 +86,10 @@
     <script src="{{ asset('assets/libs/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('assets/libs/datatables.net-buttons/js/buttons.colVis.min.js') }}"></script>
     <script src="{{ asset('assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
-
+         <!-- Sweet Alerts js -->
+         <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+         <script src="{{ asset('assets/js/pages/sweet-alerts.init.js') }}"></script>
+        
     <script>
         $('#project-date-inputgroup').datepicker({
         "todayHighlight": true,
