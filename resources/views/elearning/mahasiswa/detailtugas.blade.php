@@ -86,9 +86,16 @@
                                     @else
                                     <h5 class="font-size-15 mt-4">Nilai :</h5>
                                     <h4 class="text-primary">{{ $jawaban->nilai }}</h4>
-
-                                    <h5 class="font-size-15 mt-4">Komentar :</h5>
-                                    <h6 class="text-primary">{{ $jawaban->tanggapan }}</h6>
+                                    <div class="alert alert-info mb-0 mt-3" role="alert">
+                                        <p class="fw-semibold">Tanggapan :</p>
+                                        @if ($jawaban->tanggapan == "")
+                                        <p class="mt-0">tidak ada tanggapan</p>
+                                        @else
+                                        <p class="mt-0">{{ $jawaban->tanggapan }}</p>
+                                        @endif
+                                    </div>
+                                    {{-- <h5 class="font-size-15 mt-4">Komentar :</h5>
+                                    <h6 class="text-primary">{{ $jawaban->tanggapan }}</h6> --}}
                                 @endif
 
 

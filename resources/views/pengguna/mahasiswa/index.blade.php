@@ -149,7 +149,11 @@
                                                 @method('DELETE')
                                                 <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')" class="btn btn-sm btn-outline-danger waves-effect waves-light"><i class="mdi mdi-delete font-size-12"></i></button>
                                             </form>
-                                           
+                                            <form action="{{ route('mahasiswa.reset', $user->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                            <button type="submit" class="btn btn-outline-warning btn-sm waves-effect waves-light">Reset akun</button>
+                                            </form>
                                         </div>
                                 </td>
                                 </tr>

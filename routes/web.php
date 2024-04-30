@@ -102,6 +102,7 @@ Route::middleware('auth', 'checkRole:Admin')->group(function () {
     Route::get('/pengguna/mahasiswa', [UserController::class, 'mahasiswa_index'])->name('pengguna.mahasiswa.index');
     Route::post('/pengguna/mahasiswa/daftar', [UserController::class, 'mahasiswa_register'])->name('mahasiswa.store');
     Route::put('/pengguna/mahasiswa/{id}', [UserController::class, 'update_mahasiswa'])->name('mahasiswa.update');
+    Route::put('/pengguna/mahasiswa/reset/{id}', [UserController::class, 'reset_mahasiswa'])->name('mahasiswa.reset');
     Route::delete('/pengguna/mahasiswa/{id}', [UserController::class, 'destroy_mahasiswa'])->name('mahasiswa.destroy');
 
     // Validasi

@@ -161,6 +161,30 @@ class UserController extends Controller
         }
     }
 
+    public function reset_mahasiswa(Request $request, $id)
+    {
+        // Validasi data yang dikirimkan dari form Edit
+
+        // Temukan data berdasarkan id
+        $data = User::find($id);
+
+        // Pastikan data ditemukan
+        if ($data) {
+            // Update data dengan data baru
+            $data->password = Hash::make($data->nidn);
+          
+            $data->save();
+
+            // Jika Anda ingin melakukan sesuatu setelah data diupdate, tambahkan logika di sini
+
+            // Redirect ke halaman tertentu setelah data berhasil diupdate
+            return back()->with('success', 'Akun mahasiswa berhasil direset.');
+        } else {
+            // Jika data tidak ditemukan, berikan pesan error atau tindakan yang sesuai
+            return back()->with('error', 'Akun mahasiswa tidak ditemukan.');
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      */
