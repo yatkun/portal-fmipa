@@ -10,7 +10,13 @@ use App\Models\Tugasuser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use function PHPSTORM_META\map;
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\TugasNotification;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Notifications\Events\NotificationSent;
+use Illuminate\Notifications\Events\NotificationSending;
 
 class TugasController extends Controller
 {
@@ -48,7 +54,7 @@ class TugasController extends Controller
         ]);
 
          // Mendapatkan user yang sedang login
-         $user = Auth::user();
+        $user = Auth::user();
         $kelas= Kelas::where('kode_kelas', $kode_kelas)->first();
 
      
@@ -63,8 +69,11 @@ class TugasController extends Controller
         ]);
         $data->save();
 
+        $mahasiswa = Kelasuser::where('kelas_id', $kelas->id)->get()->pluck('user');
 
-
+        Notification::send($mahasiswa, new TugasNotification($data));
+        
+      
         // Jika Anda ingin melakukan sesuatu setelah data disimpan, tambahkan logika di sini
 
         // Redirect ke halaman tertentu setelah data berhasil disimpan

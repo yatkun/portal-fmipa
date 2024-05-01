@@ -22,6 +22,8 @@ class Kelas extends Model
         return $this->belongsToMany(User::class, 'kelas_user');
     }
 
+    protected $touches = ['tugas'];
+
     public function tugas()
     {
         return $this->hasMany(Tugas::class);

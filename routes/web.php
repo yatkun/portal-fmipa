@@ -62,7 +62,7 @@ Route::middleware(['auth', 'checkRole:Mahasiswa'])->group(function () {
 
     Route::get('/e-learning/mahasiswa/kelas/{kode_kelas}', [EmahasiswaController::class, 'lihatkelas'])->name('kelas.detail');
     Route::get('/e-learning/mahasiswa/kelas/{kode_kelas}/tugas/{id}', [EmahasiswaController::class, 'detailtugas'])->name('kelas.tugas.detail');
-
+    
 
     Route::post('/e-learning/mahasiswa/kelas/{kode_kelas}/tugas/{id}/store', [JawabanController::class, 'store'])->name('jawaban.store');
 

@@ -167,8 +167,10 @@ class EmahasiswaController extends Controller
             ->where('tugas_id', $tugas->id)->first();
 
 
+        auth()->user()->unreadNotifications->where('id', request('id'))->first()?->markAsRead();
+
         return view('elearning.mahasiswa.detailtugas', compact(['kelas','profil', 'tugas', 'peserta', 'jawaban']), [
-            'title' => 'Tambah Tugas ' . $kode_kelas,
+            'title' => 'Detail Tugas ' . $kode_kelas,
             'users' => $users,
             'kode_kelas' => $kode_kelas
         ]);
