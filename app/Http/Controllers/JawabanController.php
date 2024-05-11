@@ -6,11 +6,13 @@ use App\Models\Kelas;
 use App\Models\Tugas;
 use App\Models\Kelasuser;
 use App\Models\Tugasuser;
+use App\Notifications\NilaiNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Notification;
 
 class JawabanController extends Controller
 {
@@ -74,13 +76,26 @@ class JawabanController extends Controller
         $user = Tugasuser::where('kelas_user_id', $id)
                 ->where('tugas_id', $tugas_id->id)->first();
         // $kelas_user = Kelasuser::where('id', $user->id)->first();
-       
-                
-        $user->update($request->all());
- 
-   
 
-        return redirect()->route('e-learning.tugas.detail',['kode_kelas' => $kode_kelas, 'id'=>$user->tugas_id])->with('success', 'Nilai berhasil disimpan.');
+        if ($user) {
+            // Update data dengan data baru
+            $user->nilai = $request->nilai;
+            $user->tanggapan = $request->tanggapan;
+          
+            $user->save();
+
+            $mahasiswa = Kelasuser::find($id)->get()->pluck('user');
+ 
+
+            Notification::send($mahasiswa, new NilaiNotification($user));
+    
+            return redirect()->route('e-learning.tugas.detail',['kode_kelas' => $kode_kelas, 'id'=>$user->tugas_id])->with('success', 'Nilai berhasil disimpan.');
+        }
+
+ 
+       
+ 
+       
         
     }
 
