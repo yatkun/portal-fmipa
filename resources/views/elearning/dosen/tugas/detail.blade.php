@@ -37,6 +37,9 @@
             font-size: 14px;
             color: #333;
         }
+        .deskripsi-detail p {
+    margin-bottom: 0 !important; /* Atur margin bawah menjadi 0 untuk tag <p> di dalam elemen dengan kelas deskripsi-detail */
+}
     </style>
 @endsection
 
@@ -94,7 +97,7 @@
 
                             <h5 class="font-size-15">Deskripsi :</h5>
 
-                            <p class="text-muted">{{ $tugas->deskripsi }}</p>
+                            <p class="text-muted deskripsi-detail">{!! $tugas->deskripsi !!}</p>
 
                             @if ($tugas->link)
                                 <h5 class="font-size-15 mt-4">Dokumen :</h5>

@@ -1,5 +1,10 @@
 @extends('template.panel')
 
+@section('css')
+    <!-- Include stylesheet -->
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.1/dist/quill.snow.css" rel="stylesheet" />
+@endsection
+
 @section('content')
 
 
@@ -12,7 +17,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title mb-4">Edit Tugas</h4>
-                            <form method="POST" action="{{ route('e-learning.tugas.update', ['kode_kelas' => $tugas->kelas->kode_kelas, 'id' => $tugas->id]) }}">
+                            <form id="identifier" method="POST" action="{{ route('e-learning.tugas.update', ['kode_kelas' => $tugas->kelas->kode_kelas, 'id' => $tugas->id]) }}">
                                 @csrf
                                 @method('PUT')
                                 <div class="row mb-4">
@@ -24,7 +29,11 @@
                                 <div class="row mb-4">
                                     <label for="deskripsi" class="col-form-label col-lg-2">Deskripsi Tugas</label>
                                     <div class="col-lg-10">
-                                        <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" placeholder="Masukkan Deskripsi Tugas...">{{ $tugas->deskripsi }}</textarea>
+                                        <div id="editor" name="deskripsi">
+                                      
+                                            {!! $tugas->deskripsi  !!}
+                                        </div>
+                                        <textarea style="display:none" id="hiddenArea" name="deskripsi"></textarea>
                                     </div>
                                 </div>
 
@@ -64,4 +73,19 @@
         <!-- container-fluid -->
     </div>
     <!-- End Page-content -->
+@endsection
+
+@section('js')
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.1/dist/quill.js"></script>
+    <script>
+        const quill = new Quill('#editor', {
+            theme: 'snow'
+        });
+
+        $("#identifier").on("submit",function() {
+  $("#hiddenArea").val($("#editor .ql-editor").html());
+  
+  
+})
+    </script>
 @endsection

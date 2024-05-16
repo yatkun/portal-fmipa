@@ -80,7 +80,8 @@
                                 <div class="tab-pane active show" id="home1" role="tabpanel">
                                     <p class="mb-0">
                                         @if (optional($deskripsi)->deskripsi)
-                                            {{ $deskripsi->deskripsi }}
+                                   
+                                            {!! $deskripsi->deskripsi !!}
                                         @else
                                             <div class="alert alert-secondary" role="alert">
                                                 Deskripsi kelas tidak tersedia !. <a

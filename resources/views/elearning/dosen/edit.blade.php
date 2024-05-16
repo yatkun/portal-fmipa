@@ -27,7 +27,7 @@
                             <h4 class="card-title">Edit Informasi Kelas</h4>
 
 
-                            <form method="POST"
+                            <form id="identifier" method="POST"
                                 action="{{ route('e-learning.update', ['kode_kelas' => $kelas->kode_kelas]) }}">
                                 @csrf
                                 @method('PUT')
@@ -55,14 +55,17 @@
                                     <label for="example-text-input" class="col-md-2 col-form-label">Deskripsi Kelas</label>
                                     <div class="col-md-10">
                                         <!-- Create the editor container -->
-                                        <div id="editor">
-                                            <input type="button" value="">
-                                            <p>Hello World!</p>
-                                            <p>Some initial <strong>bold</strong> text</p>
-                                            <p><br /></p>
+                                        <div id="editor" name="deskripsi">
+                                      
+                                            {!! $kelas->deskripsi->deskripsi  !!}
                                         </div>
+                                        <textarea style="display:none" id="hiddenArea" name="deskripsi"></textarea>
                                     </div>
                                 </div>
+
+
+
+
 
                                 <div class="row" style="margin-top: 70px">
                                     <div class="col-md-2">
@@ -99,5 +102,11 @@
         const quill = new Quill('#editor', {
             theme: 'snow'
         });
+
+        $("#identifier").on("submit",function() {
+  $("#hiddenArea").val($("#editor .ql-editor").html());
+  
+  
+})
     </script>
 @endsection

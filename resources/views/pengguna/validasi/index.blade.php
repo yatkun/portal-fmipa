@@ -46,6 +46,7 @@
                                     <tr>
 
                                         <th>Nama Lengkap</th>
+                                        <th>NIM/NIDN</th>
                                         <th>Level</th>
 
                                         <th>Aksi Validasi</th>
@@ -58,6 +59,7 @@
                                         <tr>
 
                                             <td>{{ $user->nama }}</td>
+                                            <td>{{ $user->nidn }}</td>
                                             <td>{{ $user->level }}</td>
 
                                             <td>

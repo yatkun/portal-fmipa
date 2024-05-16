@@ -1,5 +1,10 @@
 @extends('template.panel')
 
+@section('css')
+    <!-- Include stylesheet -->
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.1/dist/quill.snow.css" rel="stylesheet" />
+@endsection
+
 @section('content')
 
 
@@ -12,7 +17,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title mb-4">Buat Tugas Baru</h4>
-                            <form action="{{ route('tugas.store', ['kode_kelas' => $kode_kelas]) }}" method="POST">
+                            <form action="{{ route('tugas.store', ['kode_kelas' => $kode_kelas]) }}" method="POST" id="identifier">
                                 @csrf
                                 <div class="row mb-4">
                                     <label for="projectname" class="col-form-label col-lg-2">Judul Tugas</label>
@@ -23,11 +28,15 @@
                                 <div class="row mb-4">
                                     <label for="deskripsi" class="col-form-label col-lg-2">Deskripsi Tugas</label>
                                     <div class="col-lg-10">
-                                        <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" placeholder="Masukkan Deskripsi Tugas..."></textarea>
+                                        <div id="editor" name="deskripsi">
+                                      
+                                        </div>
+                                        <textarea style="display:none" id="hiddenArea" name="deskripsi"></textarea>
+
                                     </div>
                                 </div>
 
-                                <div class="row mb-4">
+                                <div class="row mb-4" style="margin-top: 70px">
                                     <label class="col-form-label col-lg-2">Deadline Tugas</label>
                                     <div class="col-lg-10">
                                         <div class="input-daterange input-group" id="project-date-inputgroup"  data-provide="datepicker" data-date-format="dd M, yyyy" data-date-container="#project-date-inputgroup" data-date-autoclose="true">
@@ -63,4 +72,19 @@
         <!-- container-fluid -->
     </div>
     <!-- End Page-content -->
+@endsection
+
+@section('js')
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.1/dist/quill.js"></script>
+    <script>
+        const quill = new Quill('#editor', {
+            theme: 'snow'
+        });
+
+        $("#identifier").on("submit",function() {
+  $("#hiddenArea").val($("#editor .ql-editor").html());
+  
+  
+})
+    </script>
 @endsection
