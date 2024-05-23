@@ -58,13 +58,7 @@
                                     </a>
                                 </li>
 
-                                <li class="nav-item" role="presentation">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#messages1" role="tab"
-                                        aria-selected="false" tabindex="-1">
-                                        <span class="d-block d-sm-none"><i class="fas fa-file-alt"></i></span>
-                                        <span class="d-none d-sm-block">Dokumen</span>
-                                    </a>
-                                </li>
+                              
                                 <li class="nav-item" role="presentation">
                                     <a class="nav-link" data-bs-toggle="tab" href="#profile1" role="tab"
                                         aria-selected="false" tabindex="-1">
@@ -150,16 +144,61 @@
                                         </div> <!-- end col -->
                                     </div> <!-- end row -->
                                 </div>
-                                <div class="tab-pane" id="messages1" role="tabpanel">
-
-                                </div>
+                              
 
                             </div>
 
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12">
+              
+
+            </div> <!-- end row -->
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body border-bottom">
+                            <div class="d-flex align-items-center">
+                                <h5 class="mb-0 card-title flex-grow-1">Dokumen</h5>
+                                <div class="flex-shrink-0">
+                                    <a href="{{ route('e-learning.tugas.buat', ['kode_kelas' => $kelas->kode_kelas]) }}"
+                                        class="btn btn-success btn-rounded waves-effect waves-light mb-2"><i
+                                            class="mdi mdi-plus me-1"></i> Tambah Dokumen</a>
+                                </div>
+                                
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table align-middle table-nowrap table-hover mb-0">
+                                   
+                                    <tbody>
+                                        <tr>
+                                            <td><a href="javascript: void(0);" class="text-dark fw-medium"><i class="mdi mdi-file-document font-size-16 align-middle text-primary me-2"></i> index.html</a></td>
+                                        
+                                            <td>
+                                                <div class="dropdown">
+                                                    <a class="font-size-16 text-muted" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="mdi mdi-dots-horizontal"></i>
+                                                    </a>
+                                                    
+                                                    <div class="dropdown-menu dropdown-menu-end" style="">
+                                                        <a class="dropdown-item" href="#">Open</a>
+                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item" href="#">Remove</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                   
+                    </div>
+                </div>
+                <div class="col-lg-8">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex align-items-center mb-3">
@@ -238,8 +277,8 @@
                         </div>
                     </div>
                 </div>
-            </div> <!-- end row -->
-
+                
+               </div>
         </div>
         <!-- container-fluid -->
     </div>

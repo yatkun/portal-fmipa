@@ -279,7 +279,7 @@
                                     </tr>
                                     <tr>
                                         <td>Tanggapan</td>
-                                        <td><textarea id="textarea" name="tanggapan" class="form-control" maxlength="225" rows="3" placeholder="Masukkan tanggapan (opsional)" style="height: 146px;"></textarea></td>
+                                        <td><textarea id="textarea" name="tanggapan" class="form-control" maxlength="225" rows="3" placeholder="Masukkan tanggapan (opsional)" style="height: 146px;">{{ optional($item)->tanggapan }}</textarea></td>
 
                                     </tr>
                                 </tbody>
