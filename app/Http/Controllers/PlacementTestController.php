@@ -46,7 +46,7 @@ class PlacementTestController extends Controller
             return redirect()->back()->with('error', 'Data tidak ditemukan.');
         }
 
-        
+        sleep(3);
 
         return view('placement_test.show', [
             'title' => 'Pengumuman Placement Test',
