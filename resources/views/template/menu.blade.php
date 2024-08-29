@@ -30,6 +30,7 @@
                 </a>
                
             </li>
+           
             <li>
                 <a href="javascript: void(0);" class="has-arrow waves-effect">
                     <i class="bx bx-file"></i>
@@ -38,8 +39,10 @@
                 <ul class="sub-menu" aria-expanded="false">
                     <li><a href="/dokumen/pribadi" key="t-tui-calendar">Pribadi</a></li>
                     <li><a href="/dokumen/umum" key="t-full-calendar">Umum</a></li>
+                    <li><a href="/dokumen/iku" key="t-full-calendar">IKU</a></li>
                 </ul>
             </li>
+            
                @elseif (auth()->user()->level === 'Mahasiswa')
                     <li>
                         <a href="/" class="waves-effect">
@@ -61,7 +64,7 @@
                         </a>
                        
                     </li>
-                @else
+                @elseif (auth()->user()->level === 'Admin')
                 <li>
                     <a href="/" class="waves-effect">
                         <i class="bx bx-home-circle"></i>
@@ -91,6 +94,26 @@
                         </a>
                         
                     </li>
+                    @elseif (auth()->user()->level === 'Tendik')
+                <li>
+                    <a href="/" class="waves-effect">
+                        <i class="bx bx-home-circle"></i>
+                        <span key="t-dashboard">Dashboard</span>
+                    </a>
+                </li> 
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="bx bx-file"></i>
+                        <span key="t-dokumen">Dokumen</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="/dokumen/pribadi" key="t-tui-calendar">Pribadi</a></li>
+                        <li><a href="/dokumen/umum" key="t-full-calendar">Umum</a></li>
+                        <li><a href="/dokumen/umum" key="t-full-calendar">Bundle Dosen</a></li>
+                    </ul>
+                    
+                </li>
+                    
                 @endif
 
                 

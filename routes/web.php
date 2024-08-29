@@ -19,6 +19,9 @@ use App\Http\Controllers\KelasController;
 use App\Http\Controllers\MahasiswaProfileController;
 use App\Http\Controllers\TugasController;
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\DokumendosenController;
+use App\Http\Controllers\DokumenikuController;
+use App\Http\Controllers\PlacementTestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +35,7 @@ use App\Http\Controllers\ChangePasswordController;
 */
 
 
-Route::middleware(['auth', 'checkRole:Dosen,Mahasiswa,Admin'])->group(function () {
+Route::middleware(['auth', 'checkRole:Dosen,Mahasiswa,Admin,Tendik'])->group(function () {
     // Dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -50,6 +53,11 @@ Route::middleware(['auth', 'checkRole:Dosen,Admin'])->group(function () {
     Route::post('/dokumen/pribadi/store', [DokumenController::class, 'store'])->name('dokumen.store');
     Route::put('/dokumen/pribadi/{id}', [DokumenController::class, 'update'])->name('dokumen.update');
     Route::delete('/dokumen/pribadi/{id}', [DokumenController::class, 'destroy'])->name('dokumen.destroy');
+
+
+    Route::get('/dokumen/iku', [DokumenikuController::class, 'iku'])->name('iku');
+
+    Route::post('/dokumen/iku-1/store', [DokumenikuController::class, 'store_iku1'])->name('dokumen.iku1.store');
 
   
 
@@ -80,6 +88,9 @@ Route::middleware('guest')->group(function () {
     // Rute untuk login
     Route::get('/masuk', [LoginController::class, 'showLoginForm'])->name('login.form');
     Route::post('/masuk', [LoginController::class, 'login'])->name('login');
+
+    Route::get('/placement-test', [PlacementTestController::class, 'index']);
+    Route::post('/placement-test/lihat-hasil', [PlacementTestController::class, 'show'])->name('checkpengumuman');
 });
 
 Route::post('/keluar', [LoginController::class, 'logout'])->name('logout');
@@ -143,5 +154,12 @@ Route::middleware('auth', 'checkRole:Mahasiswa')->group(function () {
     Route::get('/mahasiswa-profil/edit', [MahasiswaProfileController::class, 'edit'])->name('edit.profil.mahasiswa');
     Route::put('/mahasiswa-profil/update', [MahasiswaProfileController::class, 'update'])->name('update.profil.mahasiswa');
     Route::post('/update-profile-image', [MahasiswaProfileController::class, 'updateProfileImage'])->name('foto.profile.mahasiswa');
+
+});
+
+
+Route::middleware('auth', 'checkRole:Tendik')->group(function () {
+   
+    Route::get('/dokumen/dosen', [DokumendosenController::class, 'index'])->name('lihat.dokumen.dosen');
 
 });

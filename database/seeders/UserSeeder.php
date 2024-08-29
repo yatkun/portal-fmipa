@@ -100,5 +100,47 @@ class UserSeeder extends Seeder
 
             ]
         );
+
+        DB::table('dokumenikus')->insert(
+            [
+                [
+                    'nama_dokumen' => 'Tracerstudy',
+                    'keterangan' => '2023/2024',
+                   
+                    'jenis_iku'=> 'iku1',
+                    'files' => '/downloads',
+                    'link' => 'https://drive.google.com/file/d/1lQfHm2bEwXr6WwZK7Qs2nI8sHqX8Y2bq/view?usp=sharing',
+                    'user_id' => '1'
+                ],
+
+            ]
+        );
+        DB::table('placement_tests')->insert(
+            [
+                [
+                    'nim' => '123',
+                    'nama' => 'Muhammad Hidayatullah',
+                    'nilai'=> '90',
+                    'keterangan' => 'Lulus',
+                    'tambahan' => 'tidak ada',
+                    
+                ],
+
+            ]
+        );
+        DB::table('placement_tests')->insert(
+            [
+                [
+                    'nim' => '456',
+                    'nama' => 'Muhammad Rifandi',
+                    'nilai'=> '95',
+                    'keterangan' => 'Lulus',
+                    'tambahan' => 'tidak ada',
+                    
+                ],
+
+            ]
+        );
+        
     }
 }
