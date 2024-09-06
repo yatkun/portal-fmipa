@@ -196,7 +196,7 @@
                                             <tr>
                                                 <td width="30%">Nilai</td>
                                                 @if ( $data->nilai == 'kosong')
-                                                    
+                                                <td>: </td>
                                                 @else
                                                     <td>: <b>{{ $data->nilai }}</b></td>
                                                 @endif
