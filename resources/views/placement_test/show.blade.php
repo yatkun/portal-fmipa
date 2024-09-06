@@ -211,8 +211,10 @@
                                 <a href="{{ $data->tambahan }}" target="_blank" class="btn btn-soft-info waves-effect waves-light">Unduh Sertifikat (PDF)</a>
                                    @else
                                    <div class="alert alert-secondary mt-2" role="alert">
-                                    A simple success alert—check it out!
+                                    Maaf ! Anda dinyatakan <b>TIDAK LULUS</b> placement test.
                                 </div>
+            
+                                <a href="{{ $data->tambahan }}" target="_blank" class="btn btn-outline-success waves-effect waves-light">Gabung Kelas Tutorial (WA)</a>
                                    @endif
                                 </div>
                             </div>
