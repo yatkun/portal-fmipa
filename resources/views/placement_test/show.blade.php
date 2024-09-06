@@ -186,15 +186,15 @@
                               
                                         <tbody>
                                             <tr>
-                                                <td>NIM</td>
+                                                <td width="30%">NIM</td>
                                                 <td>: {{ $data->nim }}</td>
                                             </tr>
                                             <tr>
-                                                <td>Nama</td>
+                                                <td width="30%">Nama</td>
                                                 <td>: {{ $data->nama }}</td>
                                             </tr>
                                             <tr>
-                                                <td>Nilai</td>
+                                                <td width="30%">Nilai</td>
                                                 <td>: <b>{{ $data->nilai }}</b></td>
                                             </tr>
                                            
@@ -208,7 +208,7 @@
                                     Selamat! Anda dinyatakan <b>LULUS</b> placement test.
                                 </div>
 
-                                <button type="button" class="btn btn-soft-info waves-effect waves-light">Unduh Sertifikat (PDF)</button>
+                                <a href="{{ $data->tambahan }}" target="_blank" class="btn btn-soft-info waves-effect waves-light">Unduh Sertifikat (PDF)</a>
                                    @else
                                    <div class="alert alert-secondary mt-2" role="alert">
                                     A simple success alert—check it out!
