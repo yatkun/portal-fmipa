@@ -203,7 +203,7 @@
                                         </tbody>
                                     </table>
 
-                                   @if ($data->keterangan == 'Lulus')
+                                   @if ($data->keterangan == 'LULUS')
                                    <div class="alert alert-success mt-2" role="alert">
                                     Selamat! Anda dinyatakan <b>LULUS</b> placement test.
                                 </div>
