@@ -195,11 +195,12 @@
                                             </tr>
                                             <tr>
                                                 <td width="30%">Nilai</td>
-                                                <td>: <b>@if ({{ $data->nilai }} === 'kosong')</b>
+                                                @if ({{ $data->nilai }} === 'kosong')
                                                     
                                                 @else
-                                                <b>{{ $data->nilai }}</b>
-                                                @endif</td>
+                                                    <td>: <b>{{ $data->nilai }}</b></td>
+                                                @endif
+                                                </td>
                                             </tr>
                                            
                                             
