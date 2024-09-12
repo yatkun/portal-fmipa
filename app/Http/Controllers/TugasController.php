@@ -70,9 +70,9 @@ class TugasController extends Controller
         $data->save();
 
         $mahasiswa = Kelasuser::where('kelas_id', $kelas->id)->get()->pluck('user');
-  
-        Notification::send($mahasiswa, new TugasNotification($data));
 
+        Notification::send($mahasiswa, new TugasNotification($data));
+        
         // Jika Anda ingin melakukan sesuatu setelah data disimpan, tambahkan logika di sini
 
         // Redirect ke halaman tertentu setelah data berhasil disimpan

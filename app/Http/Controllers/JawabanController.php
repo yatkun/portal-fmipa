@@ -83,10 +83,9 @@ class JawabanController extends Controller
             $user->tanggapan = $request->tanggapan;
           
             $user->save();
-
-            $mahasiswa = Kelasuser::find($id)->get()->pluck('user');
- 
-
+            
+            $mahasiswa = Kelasuser::where('id', $user->kelas_user_id)->get()->pluck('user');
+               
             Notification::send($mahasiswa, new NilaiNotification($user));
     
             return redirect()->route('e-learning.tugas.detail',['kode_kelas' => $kode_kelas, 'id'=>$user->tugas_id])->with('success', 'Nilai berhasil disimpan.');
