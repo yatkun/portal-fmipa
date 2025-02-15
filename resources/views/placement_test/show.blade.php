@@ -169,7 +169,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="text-primary p-4">
-                                        <h1 class="text-lg text-primary font-bold" style="margin-bottom: 5px">PENGUMUMAN HASIL PLACEMENT TEST 2024</h1>
+                                        <h1 class="text-lg text-primary font-bold" style="margin-bottom: 5px">PENGUMUMAN HASIL PLACEMENT TEST 2025</h1>
                                         <h5 class="text-secondary">PROGRAM STUDI STATISTIKA</h5>
                                     </div>
                                 </div>
@@ -216,12 +216,10 @@
                                 <a href="{{ $data->tambahan }}" target="_blank" class="btn btn-soft-info waves-effect waves-light">Unduh Sertifikat (PDF)</a>
                                    @else
                                    <div class="alert alert-secondary mt-2" role="alert">
-                                    Maaf ! Anda dinyatakan <b>TIDAK LULUS</b> placement test.
+                                    Maaf ! Anda dinyatakan <b>TIDAK LULUS</b> placement test. Silahkan menghubungi Dosen PA masing-masing.
                                 </div>
             
-                                <a href="{{ $data->tambahan }}" target="_blank" class="btn btn-outline-success waves-effect waves-light">Gabung Kelas Tutorial (WA)</a>
-                                   @endif
-                                </div>
+                               
                             </div>
 
                         </div>
