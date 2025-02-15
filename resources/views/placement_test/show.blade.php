@@ -138,18 +138,25 @@
             -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
             backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
         }
-        .glass-effect {
-  background: rgba(255, 255, 255, 0.2); /* Transparansi warna putih */
-  backdrop-filter: blur(10px); /* Efek blur di belakang elemen */
-  border-radius: 10px; /* Sudut melengkung */
-  border: 1px solid rgba(255, 255, 255, 0.3); /* Batasan semi-transparan */
 
-  padding: 10px; /* Padding untuk konten */
-}
-.text-lg {
-    font-size:2rem;
-    font-weight: 700;
-}
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.2);
+            /* Transparansi warna putih */
+            backdrop-filter: blur(10px);
+            /* Efek blur di belakang elemen */
+            border-radius: 10px;
+            /* Sudut melengkung */
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            /* Batasan semi-transparan */
+
+            padding: 10px;
+            /* Padding untuk konten */
+        }
+
+        .text-lg {
+            font-size: 2rem;
+            font-weight: 700;
+        }
     </style>
 
 </head>
@@ -163,63 +170,66 @@
             class="absolute top-1/2 left-1/2 max-w-none -translate-x-1/2 -translate-y-1/2" width="1308" />
         <div class="absolute inset-0 bg-grid "></div>
         <div class="relative mx-auto col-md-8 col-lg-6 col-xl-5 ">
-                <div class="glass-effect">
-                    <div class="card overflow-hidden" style="margin-bottom: 0px">
-                        <div class="bg-primary bg-soft">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="text-primary p-4">
-                                        <h1 class="text-lg text-primary font-bold" style="margin-bottom: 5px">PENGUMUMAN HASIL PLACEMENT TEST 2025</h1>
-                                        <h5 class="text-secondary">PROGRAM STUDI STATISTIKA</h5>
-                                    </div>
+            <div class="glass-effect">
+                <div class="card overflow-hidden" style="margin-bottom: 0px">
+                    <div class="bg-primary bg-soft">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="text-primary p-4">
+                                    <h1 class="text-lg text-primary font-bold" style="margin-bottom: 5px">PENGUMUMAN
+                                        HASIL PLACEMENT TEST 2025</h1>
+                                    <h5 class="text-secondary">PROGRAM STUDI STATISTIKA</h5>
                                 </div>
-        
                             </div>
+
                         </div>
-                        <div class="card-body pt-0">
-                            
-                            <div class="p-2 mt-3">
-                        
-                                <div class="table-responsive">
-                                    <table class="table table-striped mb-0">
+                    </div>
+                    <div class="card-body pt-0">
 
-                              
-                                        <tbody>
-                                            <tr>
-                                                <td width="30%">NIM</td>
-                                                <td>: {{ $data->nim }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td width="30%">Nama</td>
-                                                <td>: {{ $data->nama }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td width="30%">Nilai</td>
-                                                @if ( $data->nilai == 'kosong')
+                        <div class="p-2 mt-3">
+
+                            <div class="table-responsive">
+                                <table class="table table-striped mb-0">
+
+
+                                    <tbody>
+                                        <tr>
+                                            <td width="30%">NIM</td>
+                                            <td>: {{ $data->nim }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="30%">Nama</td>
+                                            <td>: {{ $data->nama }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="30%">Nilai</td>
+                                            @if ($data->nilai == 'kosong')
                                                 <td>: </td>
-                                                @else
-                                                    <td>: <b>{{ $data->nilai }}</b></td>
-                                                @endif
-                                                </td>
-                                            </tr>
-                                           
-                                            
-                                        
-                                        </tbody>
-                                    </table>
+                                            @else
+                                                <td>: <b>{{ $data->nilai }}</b></td>
+                                            @endif
+                                            </td>
+                                        </tr>
 
-                                   @if ($data->keterangan == 'LULUS')
-                                   <div class="alert alert-success mt-2" role="alert">
-                                    Selamat! Anda dinyatakan <b>LULUS</b> placement test.
-                                </div>
 
-                                <a href="{{ $data->tambahan }}" target="_blank" class="btn btn-soft-info waves-effect waves-light">Unduh Sertifikat (PDF)</a>
-                                   @else
-                                   <div class="alert alert-secondary mt-2" role="alert">
-                                    Maaf ! Anda dinyatakan <b>TIDAK LULUS</b> placement test. Silahkan menghubungi Dosen PA masing-masing.
-                                </div>
-            
-                               
+
+                                    </tbody>
+                                </table>
+
+                                @if ($data->keterangan == 'LULUS')
+                                    <div class="alert alert-success mt-2" role="alert">
+                                        Selamat! Anda dinyatakan <b>LULUS</b> placement test.
+                                    </div>
+
+                                    <a href="{{ $data->tambahan }}" target="_blank"
+                                        class="btn btn-soft-info waves-effect waves-light">Unduh Sertifikat (PDF)</a>
+                                @else
+                                    <div class="alert alert-secondary mt-2" role="alert">
+                                        Maaf ! Anda dinyatakan <b>TIDAK LULUS</b> placement test. Silahkan menghubungi
+                                        Dosen PA masing-masing.
+                                    </div>
+                                @endif
+
                             </div>
 
                         </div>
@@ -229,7 +239,7 @@
                 <div class="mt-5 text-center">
 
                     <div>
-    
+
                         <p>©
                             <script>
                                 document.write(new Date().getFullYear())
@@ -240,9 +250,9 @@
                     </div>
                 </div>
             </div>
-            
 
-           
+
+
 
         </div>
     </div>

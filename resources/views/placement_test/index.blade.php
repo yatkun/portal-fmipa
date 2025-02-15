@@ -169,7 +169,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="text-primary p-4">
-                                        <h1 class="text-lg text-primary font-bold" style="margin-bottom: 5px">PENGUMUMAN HASIL PLACEMENT TEST 2024</h1>
+                                        <h1 class="text-lg text-primary font-bold" style="margin-bottom: 5px">PENGUMUMAN HASIL PLACEMENT TEST 2025</h1>
                                         <h5 class="text-secondary">PROGRAM STUDI STATISTIKA</h5>
                                     </div>
                                 </div>
