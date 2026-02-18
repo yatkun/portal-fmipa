@@ -43,7 +43,7 @@ class AuthApiController extends Controller
             'data' => [
                 'user' => [
                     'id' => $user->id,
-                    'name' => $user->name,
+                    'nama' => $user->nama,
                     'nidn' => $user->nidn,
                     'level' => $user->level
                 ],

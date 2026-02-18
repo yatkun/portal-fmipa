@@ -1,6 +1,7 @@
 # Portal FMIPA API Documentation
 
 ## Daftar Isi
+
 - [Setup](#setup)
 - [Authentication](#authentication)
 - [API Endpoints](#api-endpoints)
@@ -11,6 +12,7 @@
 ## Setup
 
 ### Requirements
+
 - Laravel 10.x
 - PHP 8.1+
 - Sanctum (sudah installed)
@@ -20,19 +22,21 @@
 API sudah terintegrasi dalam projekt. Untuk mulai menggunakan API:
 
 1. **Jalankan migrations** (jika belum):
-   ```bash
-   php artisan migrate
-   ```
+
+    ```bash
+    php artisan migrate
+    ```
 
 2. **Pastikan database seeders berjalan**:
-   ```bash
-   php artisan migrate:fresh --seed
-   ```
+
+    ```bash
+    php artisan migrate:fresh --seed
+    ```
 
 3. **Server development**:
-   ```bash
-   php artisan serve
-   ```
+    ```bash
+    php artisan serve
+    ```
 
 API akan tersedia di: `http://localhost:8000/api`
 
@@ -47,6 +51,7 @@ Semua endpoint (kecuali `/api/login`) memerlukan **API Token** untuk autentikasi
 #### Mendapatkan Token
 
 **Request:**
+
 ```
 POST /api/login
 Content-Type: application/json
@@ -58,19 +63,20 @@ Content-Type: application/json
 ```
 
 **Response:**
+
 ```json
 {
-  "status": "success",
-  "data": {
-    "user": {
-      "id": 1,
-      "name": "John Doe",
-      "email": "john@example.com",
-      "level": "Dosen"
+    "status": "success",
+    "data": {
+        "user": {
+            "id": 1,
+            "name": "John Doe",
+            "email": "john@example.com",
+            "level": "Dosen"
+        },
+        "token": "1|abc123xyz789..."
     },
-    "token": "1|abc123xyz789..."
-  },
-  "message": "Login successful"
+    "message": "Login successful"
 }
 ```
 
@@ -87,6 +93,7 @@ Atau di header `X-SANCTUM-CSRF-TOKEN` jika diperlukan.
 #### Logout
 
 **Request:**
+
 ```
 POST /api/logout
 Authorization: Bearer YOUR_TOKEN
@@ -98,22 +105,23 @@ Authorization: Bearer YOUR_TOKEN
 
 ### Authentication Endpoints
 
-| Method | Endpoint | Deskripsi |
-|--------|----------|-----------|
-| POST | `/api/login` | Login dan generate token |
-| POST | `/api/logout` | Logout dan revoke token |
-| GET | `/api/profile` | Get profile user yang login |
+| Method | Endpoint       | Deskripsi                   |
+| ------ | -------------- | --------------------------- |
+| POST   | `/api/login`   | Login dan generate token    |
+| POST   | `/api/logout`  | Logout dan revoke token     |
+| GET    | `/api/profile` | Get profile user yang login |
 
 ### Users
-| Method | Endpoint | Deskripsi |
-|--------|----------|-----------|
-| GET | `/api/users` | Get semua user |
-| GET | `/api/users/{id}` | Get user by ID |
-| POST | `/api/users` | Create user baru |
-| PUT | `/api/users/{id}` | Update user |
-| DELETE | `/api/users/{id}` | Delete user |
-| GET | `/api/users/dosen` | Get semua Dosen |
-| GET | `/api/users/mahasiswa` | Get semua Mahasiswa aktif |
+
+| Method | Endpoint               | Deskripsi                 |
+| ------ | ---------------------- | ------------------------- |
+| GET    | `/api/users`           | Get semua user            |
+| GET    | `/api/users/{id}`      | Get user by ID            |
+| POST   | `/api/users`           | Create user baru          |
+| PUT    | `/api/users/{id}`      | Update user               |
+| DELETE | `/api/users/{id}`      | Delete user               |
+| GET    | `/api/users/dosen`     | Get semua Dosen           |
+| GET    | `/api/users/mahasiswa` | Get semua Mahasiswa aktif |
 
 ### User Levels & Fields
 
@@ -122,80 +130,88 @@ Authorization: Bearer YOUR_TOKEN
 **Login Field:** `nidn` (bukan email)
 
 ### Kelas (Classes)
-| Method | Endpoint | Deskripsi |
-|--------|----------|-----------|
-| GET | `/api/kelas` | Get semua kelas |
-| GET | `/api/kelas/{id}` | Get kelas by ID |
-| POST | `/api/kelas` | Create kelas baru |
-| PUT | `/api/kelas/{id}` | Update kelas |
-| DELETE | `/api/kelas/{id}` | Delete kelas |
-| GET | `/api/kelas/user/{userId}` | Get kelas by user |
+
+| Method | Endpoint                   | Deskripsi         |
+| ------ | -------------------------- | ----------------- |
+| GET    | `/api/kelas`               | Get semua kelas   |
+| GET    | `/api/kelas/{id}`          | Get kelas by ID   |
+| POST   | `/api/kelas`               | Create kelas baru |
+| PUT    | `/api/kelas/{id}`          | Update kelas      |
+| DELETE | `/api/kelas/{id}`          | Delete kelas      |
+| GET    | `/api/kelas/user/{userId}` | Get kelas by user |
 
 ### Tugas (Assignments)
-| Method | Endpoint | Deskripsi |
-|--------|----------|-----------|
-| GET | `/api/tugas` | Get semua tugas |
-| GET | `/api/tugas/{id}` | Get tugas by ID |
-| POST | `/api/tugas` | Create tugas baru |
-| PUT | `/api/tugas/{id}` | Update tugas |
-| DELETE | `/api/tugas/{id}` | Delete tugas |
-| GET | `/api/tugas/kelas/{kelasId}` | Get tugas by kelas |
+
+| Method | Endpoint                     | Deskripsi          |
+| ------ | ---------------------------- | ------------------ |
+| GET    | `/api/tugas`                 | Get semua tugas    |
+| GET    | `/api/tugas/{id}`            | Get tugas by ID    |
+| POST   | `/api/tugas`                 | Create tugas baru  |
+| PUT    | `/api/tugas/{id}`            | Update tugas       |
+| DELETE | `/api/tugas/{id}`            | Delete tugas       |
+| GET    | `/api/tugas/kelas/{kelasId}` | Get tugas by kelas |
 
 ### Dokumen (Documents)
-| Method | Endpoint | Deskripsi |
-|--------|----------|-----------|
-| GET | `/api/dokumen` | Get semua dokumen |
-| GET | `/api/dokumen/{id}` | Get dokumen by ID |
-| POST | `/api/dokumen` | Upload dokumen baru |
-| PUT | `/api/dokumen/{id}` | Update dokumen |
-| DELETE | `/api/dokumen/{id}` | Delete dokumen |
-| GET | `/api/dokumen/user/{userId}` | Get dokumen by user |
+
+| Method | Endpoint                     | Deskripsi           |
+| ------ | ---------------------------- | ------------------- |
+| GET    | `/api/dokumen`               | Get semua dokumen   |
+| GET    | `/api/dokumen/{id}`          | Get dokumen by ID   |
+| POST   | `/api/dokumen`               | Upload dokumen baru |
+| PUT    | `/api/dokumen/{id}`          | Update dokumen      |
+| DELETE | `/api/dokumen/{id}`          | Delete dokumen      |
+| GET    | `/api/dokumen/user/{userId}` | Get dokumen by user |
 
 ### Dosen Profile
-| Method | Endpoint | Deskripsi |
-|--------|----------|-----------|
-| GET | `/api/dosen-profile` | Get semua dosen profile |
-| GET | `/api/dosen-profile/{id}` | Get dosen profile by ID |
-| POST | `/api/dosen-profile` | Create dosen profile |
-| PUT | `/api/dosen-profile/{id}` | Update dosen profile |
-| DELETE | `/api/dosen-profile/{id}` | Delete dosen profile |
-| GET | `/api/dosen-profile/user/{userId}` | Get dosen profile by user |
+
+| Method | Endpoint                           | Deskripsi                 |
+| ------ | ---------------------------------- | ------------------------- |
+| GET    | `/api/dosen-profile`               | Get semua dosen profile   |
+| GET    | `/api/dosen-profile/{id}`          | Get dosen profile by ID   |
+| POST   | `/api/dosen-profile`               | Create dosen profile      |
+| PUT    | `/api/dosen-profile/{id}`          | Update dosen profile      |
+| DELETE | `/api/dosen-profile/{id}`          | Delete dosen profile      |
+| GET    | `/api/dosen-profile/user/{userId}` | Get dosen profile by user |
 
 ### Mahasiswa Profile
-| Method | Endpoint | Deskripsi |
-|--------|----------|-----------|
-| GET | `/api/mahasiswa-profile` | Get semua mahasiswa profile |
-| GET | `/api/mahasiswa-profile/{id}` | Get mahasiswa profile by ID |
-| POST | `/api/mahasiswa-profile` | Create mahasiswa profile |
-| PUT | `/api/mahasiswa-profile/{id}` | Update mahasiswa profile |
-| DELETE | `/api/mahasiswa-profile/{id}` | Delete mahasiswa profile |
-| GET | `/api/mahasiswa-profile/user/{userId}` | Get mahasiswa profile by user |
+
+| Method | Endpoint                               | Deskripsi                     |
+| ------ | -------------------------------------- | ----------------------------- |
+| GET    | `/api/mahasiswa-profile`               | Get semua mahasiswa profile   |
+| GET    | `/api/mahasiswa-profile/{id}`          | Get mahasiswa profile by ID   |
+| POST   | `/api/mahasiswa-profile`               | Create mahasiswa profile      |
+| PUT    | `/api/mahasiswa-profile/{id}`          | Update mahasiswa profile      |
+| DELETE | `/api/mahasiswa-profile/{id}`          | Delete mahasiswa profile      |
+| GET    | `/api/mahasiswa-profile/user/{userId}` | Get mahasiswa profile by user |
 
 ### Jawaban (Answers)
-| Method | Endpoint | Deskripsi |
-|--------|----------|-----------|
-| GET | `/api/jawaban` | Get semua jawaban |
-| GET | `/api/jawaban/{id}` | Get jawaban by ID |
-| POST | `/api/jawaban` | Submit jawaban baru |
-| PUT | `/api/jawaban/{id}` | Update jawaban (grade) |
-| DELETE | `/api/jawaban/{id}` | Delete jawaban |
-| GET | `/api/jawaban/tugas/{tugasId}` | Get jawaban by tugas |
-| GET | `/api/jawaban/user/{userId}` | Get jawaban by user |
+
+| Method | Endpoint                       | Deskripsi              |
+| ------ | ------------------------------ | ---------------------- |
+| GET    | `/api/jawaban`                 | Get semua jawaban      |
+| GET    | `/api/jawaban/{id}`            | Get jawaban by ID      |
+| POST   | `/api/jawaban`                 | Submit jawaban baru    |
+| PUT    | `/api/jawaban/{id}`            | Update jawaban (grade) |
+| DELETE | `/api/jawaban/{id}`            | Delete jawaban         |
+| GET    | `/api/jawaban/tugas/{tugasId}` | Get jawaban by tugas   |
+| GET    | `/api/jawaban/user/{userId}`   | Get jawaban by user    |
 
 ### Links
-| Method | Endpoint | Deskripsi |
-|--------|----------|-----------|
-| GET | `/api/links` | Get semua links |
-| GET | `/api/links/{id}` | Get link by ID |
-| POST | `/api/links` | Create link baru |
-| PUT | `/api/links/{id}` | Update link |
-| DELETE | `/api/links/{id}` | Delete link |
+
+| Method | Endpoint          | Deskripsi        |
+| ------ | ----------------- | ---------------- |
+| GET    | `/api/links`      | Get semua links  |
+| GET    | `/api/links/{id}` | Get link by ID   |
+| POST   | `/api/links`      | Create link baru |
+| PUT    | `/api/links/{id}` | Update link      |
+| DELETE | `/api/links/{id}` | Delete link      |
 
 ---
 
 ## Response Format
 
 ### Success Response
+
 ```json
 {
   "status": "success",
@@ -205,14 +221,16 @@ Authorization: Bearer YOUR_TOKEN
 ```
 
 ### Error Response
+
 ```json
 {
-  "status": "error",
-  "message": "Error description"
+    "status": "error",
+    "message": "Error description"
 }
 ```
 
 ### Status Codes
+
 - `200`: OK - Request berhasil
 - `201`: Created - Resource berhasil dibuat
 - `400`: Bad Request - Request tidak valid
@@ -237,12 +255,14 @@ Dokumentasi lengkap tersedia dalam format Postman Collection.
 ### Setup Environment Variables
 
 Dalam Postman, set variables di Environment:
+
 - `base_url`: `localhost:8000` (atau URL server Anda)
 - `api_token`: (akan otomatis diisi setelah login)
 
 Atau di setup auth dengan type "Bearer Token"
 
 ### Workflow
+
 1. Jalankan endpoint `/login` dengan nidn + password
 2. Dapatkan token dari response
 3. Token akan otomatis disimpan di variable `api_token` (jika setup dengan test script)
@@ -264,19 +284,20 @@ curl -X POST http://localhost:8000/api/login \
 ```
 
 Response:
+
 ```json
 {
-  "status": "success",
-  "data": {
-    "user": {
-      "id": 1,
-      "name": "Ahmad Dosen",
-      "nidn": "197001011995031001",
-      "level": "Dosen"
+    "status": "success",
+    "data": {
+        "user": {
+            "id": 1,
+            "name": "Ahmad Dosen",
+            "nidn": "197001011995031001",
+            "level": "Dosen"
+        },
+        "token": "1|abc123xyz789..."
     },
-    "token": "1|abc123xyz789..."
-  },
-  "message": "Login successful"
+    "message": "Login successful"
 }
 ```
 
@@ -356,6 +377,7 @@ curl -X POST http://localhost:8000/api/logout \
 ## Validation Rules
 
 ### Create User
+
 ```
 name: required|string|max:255
 nidn: required|string|max:255|unique:users
@@ -364,12 +386,14 @@ level: required|in:Dosen,Mahasiswa,Admin,Tendik
 ```
 
 ### Create Kelas
+
 ```
 kode_kelas: required|string|max:255|unique:kelas
 nama_kelas: required|string|max:255
 ```
 
 ### Create Tugas
+
 ```
 kelas_id: required|exists:kelas,id
 judul: required|string|max:255
@@ -379,6 +403,7 @@ tgl_akhir: required|date|after:tgl_mulai
 ```
 
 ### Upload Dokumen
+
 ```
 nama_dokumen: required|string|max:255
 file_path: required|file
@@ -392,11 +417,11 @@ Semua error response mengikuti format:
 
 ```json
 {
-  "status": "error",
-  "message": "Error description",
-  "errors": {
-    "field_name": ["Error message"]
-  }
+    "status": "error",
+    "message": "Error description",
+    "errors": {
+        "field_name": ["Error message"]
+    }
 }
 ```
 
@@ -404,12 +429,12 @@ Contoh validation error:
 
 ```json
 {
-  "status": "error",
-  "message": "The given data was invalid",
-  "errors": {
-    "email": ["The email has already been taken"],
-    "kode_kelas": ["Kode kelas telah digunakan"]
-  }
+    "status": "error",
+    "message": "The given data was invalid",
+    "errors": {
+        "email": ["The email has already been taken"],
+        "kode_kelas": ["Kode kelas telah digunakan"]
+    }
 }
 ```
 

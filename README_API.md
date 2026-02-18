@@ -7,6 +7,7 @@ Saya telah menambahkan **REST API** yang lengkap untuk Portal FMIPA **tanpa meng
 ### File & Folder Baru yang Ditambahkan
 
 #### 1. **API Controllers** (`app/Http/Controllers/Api/`)
+
 Folder baru berisi 9 API controller terpisah dari web controllers:
 
 - `AuthApiController.php` - Login dan autentikasi
@@ -20,6 +21,7 @@ Folder baru berisi 9 API controller terpisah dari web controllers:
 - `LinkApiController.php` - Manajemen link
 
 #### 2. **API Resources** (`app/Http/Resources/`)
+
 Folder baru berisi response formatting:
 
 - `UserResource.php`
@@ -32,9 +34,11 @@ Folder baru berisi response formatting:
 - `LinkResource.php`
 
 #### 3. **Updated Files**
+
 - `routes/api.php` - Updated dengan semua API routes
 
 #### 4. **Documentation Files**
+
 - `API_DOCUMENTATION.md` - Dokumentasi lengkap API (Bahasa Indonesia)
 - `Portal-FMIPA-API.postman_collection.json` - Postman Collection (siap import)
 
@@ -43,11 +47,13 @@ Folder baru berisi response formatting:
 ## Fitur API
 
 ### ✅ Authentication (Token-based)
+
 - Login dengan email & password → mendapatkan API token
 - Logout & revoke token
 - Get current user profile
 
 ### ✅ 9 Resource Total (53 Endpoints)
+
 1. **Users** - 7 endpoints (CRUD + filter by level)
 2. **Kelas** - 6 endpoints (CRUD + get by user)
 3. **Tugas** - 6 endpoints (CRUD + get by kelas)
@@ -58,6 +64,7 @@ Folder baru berisi response formatting:
 8. **Links** - 5 endpoints (CRUD)
 
 ### ✅ Consistent Response Format
+
 ```json
 {
   "status": "success|error",
@@ -67,6 +74,7 @@ Folder baru berisi response formatting:
 ```
 
 ### ✅ Proper Error Handling
+
 - 404 Not Found
 - 401 Unauthorized
 - 422 Validation errors
@@ -88,6 +96,7 @@ curl -X POST http://localhost:8000/api/login \
 ```
 
 Response:
+
 ```json
 {
   "status": "success",
@@ -116,11 +125,11 @@ curl -X GET http://localhost:8000/api/kelas \
 
 1. **Download Postman** (jika belum): https://www.postman.com/downloads/
 2. **Import Collection**:
-   - Buka Postman → Click "Import"
-   - Pilih file `Portal-FMIPA-API.postman_collection.json`
+    - Buka Postman → Click "Import"
+    - Pilih file `Portal-FMIPA-API.postman_collection.json`
 3. **Setup Environment Variables**:
-   - `base_url`: `localhost:8000`
-   - `api_token`: (auto-filled setelah login)
+    - `base_url`: `localhost:8000`
+    - `api_token`: (auto-filled setelah login)
 4. **Test**: Klik endpoint apapun dan send
 
 ---
@@ -161,9 +170,11 @@ routes/
 ## Endpoint Categories
 
 ### 🔓 PUBLIC (Tidak perlu token)
+
 - `POST /api/login` - Login
 
 ### 🔒 PROTECTED (Butuh token)
+
 - Semua endpoint lain memerlukan `Authorization: Bearer {token}`
 
 ---
@@ -171,35 +182,38 @@ routes/
 ## Response Examples
 
 ### Success (200/201)
+
 ```json
 {
-  "status": "success",
-  "data": {
-    "id": 1,
-    "name": "Ahmad Dosen",
-    "email": "ahmad@example.com",
-    "level": "Dosen"
-  },
-  "message": "User retrieved successfully"
+    "status": "success",
+    "data": {
+        "id": 1,
+        "name": "Ahmad Dosen",
+        "email": "ahmad@example.com",
+        "level": "Dosen"
+    },
+    "message": "User retrieved successfully"
 }
 ```
 
 ### Not Found (404)
+
 ```json
 {
-  "status": "error",
-  "message": "User not found"
+    "status": "error",
+    "message": "User not found"
 }
 ```
 
 ### Validation Error (422)
+
 ```json
 {
-  "status": "error",
-  "message": "The given data was invalid",
-  "errors": {
-    "email": ["The email field is required"]
-  }
+    "status": "error",
+    "message": "The given data was invalid",
+    "errors": {
+        "email": ["The email field is required"]
+    }
 }
 ```
 
@@ -220,13 +234,13 @@ curl -X POST http://localhost:8000/api/dokumen \
 
 ## Validation Rules Ringkas
 
-| Resource | Required Fields |
-|----------|-----------------|
-| User | name, email, password, level |
-| Kelas | kode_kelas (unique), nama_kelas |
-| Tugas | kelas_id, judul, deskripsi, tgl_mulai, tgl_akhir |
-| Dokumen | nama_dokumen, file_path (file) |
-| Jawaban | tugas_id, (jawaban OR file_jawaban) |
+| Resource | Required Fields                                  |
+| -------- | ------------------------------------------------ |
+| User     | name, email, password, level                     |
+| Kelas    | kode_kelas (unique), nama_kelas                  |
+| Tugas    | kelas_id, judul, deskripsi, tgl_mulai, tgl_akhir |
+| Dokumen  | nama_dokumen, file_path (file)                   |
+| Jawaban  | tugas_id, (jawaban OR file_jawaban)              |
 
 ---
 
@@ -241,12 +255,15 @@ curl -X POST http://localhost:8000/api/dokumen \
 ## Testing API
 
 ### Dengan cURL
+
 Lihat contoh di `API_DOCUMENTATION.md`
 
 ### Dengan Postman
+
 Import collection dan jalankan requests
 
 ### Dengan Laravel Tinker
+
 ```bash
 php artisan tinker
 
@@ -275,15 +292,18 @@ GET    /api/{resource}/{relation}/{id} - Get by relation
 ## Troubleshooting
 
 ### 401 Unauthorized
+
 - Pastikan token ada dan valid
 - Format: `Authorization: Bearer <token>`
 - Logout dan login ulang untuk token baru
 
 ### 422 Validation Error
+
 - Periksa field yang required di documentation
 - Pastikan format data sesuai (date format, etc)
 
 ### 404 Not Found
+
 - Pastikan ID resource ada
 - Double-check endpoint URL
 
@@ -292,6 +312,7 @@ GET    /api/{resource}/{relation}/{id} - Get by relation
 ## Next Steps (Optional)
 
 Jika diperlukan, bisa tambahkan:
+
 - Rate limiting
 - Token expiration
 - Role-based authorization middleware

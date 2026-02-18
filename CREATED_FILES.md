@@ -13,22 +13,24 @@
 ## 📁 File & Folder Baru
 
 ### 1. API Controllers (9 files)
+
 Lokasi: `app/Http/Controllers/Api/`
 
-| No | File | Endpoints | Fungsi |
-|----|------|-----------|--------|
-| 1 | `AuthApiController.php` | 3 | Login, Logout, Get Profile |
-| 2 | `UserApiController.php` | 7 | CRUD Users, Filter by Level |
-| 3 | `KelasApiController.php` | 6 | CRUD Kelas, Get by User |
-| 4 | `TugasApiController.php` | 6 | CRUD Tugas, Get by Kelas |
-| 5 | `DokumenApiController.php` | 6 | CRUD Dokumen, File Upload, Get by User |
-| 6 | `DosenProfileApiController.php` | 6 | CRUD Dosen Profile, Get by User |
-| 7 | `MahasiswaProfileApiController.php` | 6 | CRUD Mahasiswa Profile, Get by User |
-| 8 | `JawabanApiController.php` | 7 | CRUD Jawaban, Get by Tugas/User |
-| 9 | `LinkApiController.php` | 5 | CRUD Links |
-| | **TOTAL** | **53 endpoints** | |
+| No  | File                                | Endpoints        | Fungsi                                 |
+| --- | ----------------------------------- | ---------------- | -------------------------------------- |
+| 1   | `AuthApiController.php`             | 3                | Login, Logout, Get Profile             |
+| 2   | `UserApiController.php`             | 7                | CRUD Users, Filter by Level            |
+| 3   | `KelasApiController.php`            | 6                | CRUD Kelas, Get by User                |
+| 4   | `TugasApiController.php`            | 6                | CRUD Tugas, Get by Kelas               |
+| 5   | `DokumenApiController.php`          | 6                | CRUD Dokumen, File Upload, Get by User |
+| 6   | `DosenProfileApiController.php`     | 6                | CRUD Dosen Profile, Get by User        |
+| 7   | `MahasiswaProfileApiController.php` | 6                | CRUD Mahasiswa Profile, Get by User    |
+| 8   | `JawabanApiController.php`          | 7                | CRUD Jawaban, Get by Tugas/User        |
+| 9   | `LinkApiController.php`             | 5                | CRUD Links                             |
+|     | **TOTAL**                           | **53 endpoints** |                                        |
 
 ### 2. API Resources (8 files)
+
 Lokasi: `app/Http/Resources/`
 
 ```
@@ -45,25 +47,27 @@ LinkResource.php
 **Fungsi**: Response formatting yang konsisten untuk semua API responses
 
 ### 3. Documentation Files (3 files)
+
 Lokasi: Root project directory
 
-| File | Deskripsi |
-|------|-----------|
+| File                   | Deskripsi                             |
+| ---------------------- | ------------------------------------- |
 | `API_DOCUMENTATION.md` | Dokumentasi lengkap API (5000+ words) |
-| `README_API.md` | Quick start guide & overview |
-| `CREATED_FILES.md` | File ini (daftar file baru) |
+| `README_API.md`        | Quick start guide & overview          |
+| `CREATED_FILES.md`     | File ini (daftar file baru)           |
 
 ### 4. Postman Collection (1 file)
+
 Lokasi: Root project directory
 
-| File | Deskripsi |
-|------|-----------|
+| File                                       | Deskripsi                                |
+| ------------------------------------------ | ---------------------------------------- |
 | `Portal-FMIPA-API.postman_collection.json` | Collection ready untuk import ke Postman |
 
 ### 5. Updated Files (1 file)
 
-| File | Perubahan |
-|------|-----------|
+| File             | Perubahan                                                    |
+| ---------------- | ------------------------------------------------------------ |
 | `routes/api.php` | Ditambahkan 53 API routes (tidak ada code lama yang dihapus) |
 
 ---
@@ -71,6 +75,7 @@ Lokasi: Root project directory
 ## 📊 API Endpoints Breakdown
 
 ### Authentication (3 endpoints)
+
 ```
 POST   /api/login              - Login & get token
 POST   /api/logout             - Logout & revoke token
@@ -78,6 +83,7 @@ GET    /api/profile            - Get current user profile
 ```
 
 ### Users (7 endpoints)
+
 ```
 GET    /api/users              - Get all users
 POST   /api/users              - Create user
@@ -89,6 +95,7 @@ GET    /api/users/mahasiswa    - Get all Mahasiswa
 ```
 
 ### Kelas (6 endpoints)
+
 ```
 GET    /api/kelas              - Get all kelas
 POST   /api/kelas              - Create kelas
@@ -99,6 +106,7 @@ GET    /api/kelas/user/{userId} - Get kelas by user
 ```
 
 ### Tugas (6 endpoints)
+
 ```
 GET    /api/tugas              - Get all tugas
 POST   /api/tugas              - Create tugas
@@ -109,6 +117,7 @@ GET    /api/tugas/kelas/{kelasId} - Get tugas by kelas
 ```
 
 ### Dokumen (6 endpoints)
+
 ```
 GET    /api/dokumen            - Get all dokumen
 POST   /api/dokumen            - Upload dokumen (multipart)
@@ -119,6 +128,7 @@ GET    /api/dokumen/user/{userId} - Get dokumen by user
 ```
 
 ### Dosen Profile (6 endpoints)
+
 ```
 GET    /api/dosen-profile      - Get all dosen profile
 POST   /api/dosen-profile      - Create dosen profile
@@ -129,6 +139,7 @@ GET    /api/dosen-profile/user/{userId} - Get by user
 ```
 
 ### Mahasiswa Profile (6 endpoints)
+
 ```
 GET    /api/mahasiswa-profile      - Get all mahasiswa profile
 POST   /api/mahasiswa-profile      - Create mahasiswa profile
@@ -139,6 +150,7 @@ GET    /api/mahasiswa-profile/user/{userId} - Get by user
 ```
 
 ### Jawaban (7 endpoints)
+
 ```
 GET    /api/jawaban            - Get all jawaban
 POST   /api/jawaban            - Submit jawaban (multipart)
@@ -150,6 +162,7 @@ GET    /api/jawaban/user/{userId} - Get jawaban by user
 ```
 
 ### Links (5 endpoints)
+
 ```
 GET    /api/links              - Get all links
 POST   /api/links              - Create link
@@ -168,6 +181,7 @@ DELETE /api/links/{id}         - Delete link
 - **Protected Routes**: Semua endpoint kecuali `/api/login`
 
 ### Token Generation Flow
+
 1. Kirim email + password ke `/api/login`
 2. Dapatkan token dalam response
 3. Gunakan token di header `Authorization` untuk semua request berikutnya
@@ -177,6 +191,7 @@ DELETE /api/links/{id}         - Delete link
 ## 📝 Response Format
 
 ### Success Response (200/201)
+
 ```json
 {
   "status": "success",
@@ -190,21 +205,23 @@ DELETE /api/links/{id}         - Delete link
 ```
 
 ### Error Response (4xx/5xx)
+
 ```json
 {
-  "status": "error",
-  "message": "Error description"
+    "status": "error",
+    "message": "Error description"
 }
 ```
 
 ### Validation Error (422)
+
 ```json
 {
-  "status": "error",
-  "message": "The given data was invalid",
-  "errors": {
-    "field_name": ["Error message"]
-  }
+    "status": "error",
+    "message": "The given data was invalid",
+    "errors": {
+        "field_name": ["Error message"]
+    }
 }
 ```
 
@@ -212,21 +229,22 @@ DELETE /api/links/{id}         - Delete link
 
 ## 🎯 HTTP Status Codes
 
-| Code | Meaning |
-|------|---------|
-| 200 | OK - Request successful |
-| 201 | Created - Resource created |
-| 400 | Bad Request - Invalid request |
-| 401 | Unauthorized - Invalid/missing token |
-| 404 | Not Found - Resource doesn't exist |
-| 422 | Validation Error - Invalid data |
-| 500 | Server Error |
+| Code | Meaning                              |
+| ---- | ------------------------------------ |
+| 200  | OK - Request successful              |
+| 201  | Created - Resource created           |
+| 400  | Bad Request - Invalid request        |
+| 401  | Unauthorized - Invalid/missing token |
+| 404  | Not Found - Resource doesn't exist   |
+| 422  | Validation Error - Invalid data      |
+| 500  | Server Error                         |
 
 ---
 
 ## 📚 Documentation Files
 
 ### 1. `API_DOCUMENTATION.md` (Lengkap)
+
 - Setup & requirements
 - Autentikasi detail
 - Semua 53 endpoints dengan contoh
@@ -235,6 +253,7 @@ DELETE /api/links/{id}         - Delete link
 - cURL contoh lengkap
 
 ### 2. `README_API.md` (Quick Start)
+
 - Overview API
 - File & folder baru
 - Quick start guide
@@ -243,12 +262,14 @@ DELETE /api/links/{id}         - Delete link
 - Troubleshooting
 
 ### 3. `Portal-FMIPA-API.postman_collection.json` (Postman)
+
 - 53 requests siap test
 - Auto variable replacement
 - Auto token saving setelah login
 - Pre-configured untuk development
 
 ### 4. `CREATED_FILES.md` (Ini)
+
 - Daftar lengkap file baru
 - Struktur direktori
 - Endpoint breakdown
@@ -258,18 +279,21 @@ DELETE /api/links/{id}         - Delete link
 ## 🚀 Quick Start
 
 ### 1. Verify Routes
+
 ```bash
 php artisan route:list --path=api
 # Harusnya menampilkan 53 routes
 ```
 
 ### 2. Start Development Server
+
 ```bash
 php artisan serve
 # Server akan running di http://localhost:8000
 ```
 
 ### 3. Test Login
+
 ```bash
 curl -X POST http://localhost:8000/api/login \
   -H "Content-Type: application/json" \
@@ -280,6 +304,7 @@ curl -X POST http://localhost:8000/api/login \
 ```
 
 ### 4. Import Postman Collection
+
 - Buka Postman
 - Click Import
 - Pilih `Portal-FMIPA-API.postman_collection.json`
@@ -365,6 +390,7 @@ portal-fmipa/
 ## 📞 Support & Troubleshooting
 
 ### Jika Routes Tidak Muncul
+
 ```bash
 php artisan cache:clear
 php artisan route:clear
@@ -372,6 +398,7 @@ php artisan route:list --path=api
 ```
 
 ### Jika Token Tidak Bekerja
+
 ```bash
 # Pastikan user ada di database
 php artisan tinker
@@ -383,6 +410,7 @@ $token = $user->createToken('test')->plainTextToken;
 ```
 
 ### Untuk Development/Testing
+
 ```bash
 # Buka Postman
 # Import Portal-FMIPA-API.postman_collection.json
@@ -395,14 +423,14 @@ $token = $user->createToken('test')->plainTextToken;
 
 ## 📊 Statistics
 
-| Metric | Value |
-|--------|-------|
-| API Controllers | 9 |
-| API Resources | 8 |
-| Total Endpoints | 53 |
-| Documentation Lines | 500+ |
-| Files Created | 18 |
-| Breaking Changes | 0 |
+| Metric              | Value |
+| ------------------- | ----- |
+| API Controllers     | 9     |
+| API Resources       | 8     |
+| Total Endpoints     | 53    |
+| Documentation Lines | 500+  |
+| Files Created       | 18    |
+| Breaking Changes    | 0     |
 
 ---
 
@@ -416,6 +444,7 @@ $token = $user->createToken('test')->plainTextToken;
 ## 🎉 Kesimpulan
 
 API Portal FMIPA sudah **100% siap digunakan** untuk:
+
 - Mobile app development
 - Web frontend (Vue, React, Angular)
 - Third-party integrations
