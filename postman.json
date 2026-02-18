@@ -1,0 +1,1347 @@
+{
+  "info": {
+    "name": "Portal FMIPA API",
+    "description": "API Documentation for Portal FMIPA - E-Learning Platform",
+    "version": "1.0.0"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{api_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "description": "Authentication endpoints for login and logout",
+      "item": [
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "pm.environment.set('api_token', jsonData.data.token);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nidn\": \"197001011995031001\",\n  \"password\": \"password\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/login",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "login"
+              ]
+            },
+            "description": "Login with NIDN and password. Returns API token for authentication."
+          },
+          "response": []
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/logout",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "logout"
+              ]
+            },
+            "description": "Logout current user and revoke API token."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/profile",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "profile"
+              ]
+            },
+            "description": "Get current authenticated user profile."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "description": "User management endpoints",
+      "item": [
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/users",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "users"
+              ]
+            },
+            "description": "Retrieve all users from the system."
+          },
+          "response": []
+        },
+        {
+          "name": "Get User by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/users/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "1"
+              ]
+            },
+            "description": "Retrieve a specific user by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Ahmad Dosen\",\n  \"nidn\": \"197001011995031001\",\n  \"password\": \"password123\",\n  \"level\": \"Dosen\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "users"
+              ]
+            },
+            "description": "Create a new user with NIDN. Levels: Dosen, Mahasiswa, Admin, Tendik"
+          },
+          "response": []
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Ahmad Dosen Updated\",\n  \"nidn\": \"197001011995031001\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "1"
+              ]
+            },
+            "description": "Update user information by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/users/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "1"
+              ]
+            },
+            "description": "Delete a user by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Dosen",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/users/dosen",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "dosen"
+              ]
+            },
+            "description": "Retrieve all Dosen (lecturer) users."
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Mahasiswa",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/users/mahasiswa",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "mahasiswa"
+              ]
+            },
+            "description": "Retrieve all active Mahasiswa (student) users."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Kelas",
+      "description": "Class management endpoints",
+      "item": [
+        {
+          "name": "Get All Kelas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/kelas",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "kelas"
+              ]
+            },
+            "description": "Retrieve all classes."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Kelas by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/kelas/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "kelas",
+                "1"
+              ]
+            },
+            "description": "Retrieve a specific class by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Create Kelas",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"kode_kelas\": \"MATH101\",\n  \"nama_kelas\": \"Calculus I\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/kelas",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "kelas"
+              ]
+            },
+            "description": "Create a new class. Requires unique kode_kelas."
+          },
+          "response": []
+        },
+        {
+          "name": "Update Kelas",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama_kelas\": \"Calculus I - Updated\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/kelas/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "kelas",
+                "1"
+              ]
+            },
+            "description": "Update class information by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Kelas",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/kelas/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "kelas",
+                "1"
+              ]
+            },
+            "description": "Delete a class by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Kelas by User",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/kelas/user/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "kelas",
+                "user",
+                "1"
+              ]
+            },
+            "description": "Retrieve all classes owned by a specific user."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Tugas",
+      "description": "Assignment/Task management endpoints",
+      "item": [
+        {
+          "name": "Get All Tugas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/tugas",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "tugas"
+              ]
+            },
+            "description": "Retrieve all assignments/tasks."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Tugas by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/tugas/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "tugas",
+                "1"
+              ]
+            },
+            "description": "Retrieve a specific assignment by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Create Tugas",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"kelas_id\": 1,\n  \"judul\": \"Assignment 1\",\n  \"deskripsi\": \"Complete the following problems from chapter 3\",\n  \"tgl_mulai\": \"2024-02-18\",\n  \"tgl_akhir\": \"2024-02-25\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/tugas",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "tugas"
+              ]
+            },
+            "description": "Create a new assignment for a class."
+          },
+          "response": []
+        },
+        {
+          "name": "Update Tugas",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"judul\": \"Assignment 1 - Updated\",\n  \"deskripsi\": \"Updated description\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/tugas/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "tugas",
+                "1"
+              ]
+            },
+            "description": "Update assignment information by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Tugas",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/tugas/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "tugas",
+                "1"
+              ]
+            },
+            "description": "Delete an assignment by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Tugas by Kelas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/tugas/kelas/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "tugas",
+                "kelas",
+                "1"
+              ]
+            },
+            "description": "Retrieve all assignments for a specific class."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Dokumen",
+      "description": "Document management endpoints",
+      "item": [
+        {
+          "name": "Get All Dokumen",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/dokumen",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "dokumen"
+              ]
+            },
+            "description": "Retrieve all documents."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Dokumen by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/dokumen/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "dokumen",
+                "1"
+              ]
+            },
+            "description": "Retrieve a specific document by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Upload Dokumen",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "nama_dokumen",
+                  "value": "Research Paper",
+                  "type": "text"
+                },
+                {
+                  "key": "file_path",
+                  "type": "file",
+                  "src": "path/to/file.pdf"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/dokumen",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "dokumen"
+              ]
+            },
+            "description": "Upload a new document with file."
+          },
+          "response": []
+        },
+        {
+          "name": "Update Dokumen",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama_dokumen\": \"Research Paper - Updated\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/dokumen/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "dokumen",
+                "1"
+              ]
+            },
+            "description": "Update document information by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Dokumen",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/dokumen/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "dokumen",
+                "1"
+              ]
+            },
+            "description": "Delete a document by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Dokumen by User",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/dokumen/user/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "dokumen",
+                "user",
+                "1"
+              ]
+            },
+            "description": "Retrieve all documents uploaded by a specific user."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Dosen Profile",
+      "description": "Lecturer profile management endpoints",
+      "item": [
+        {
+          "name": "Get All Dosen Profile",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/dosen-profile",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "dosen-profile"
+              ]
+            },
+            "description": "Retrieve all lecturer profiles."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Dosen Profile by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/dosen-profile/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "dosen-profile",
+                "1"
+              ]
+            },
+            "description": "Retrieve a specific lecturer profile by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Create Dosen Profile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": 1,\n  \"nama_dosen\": \"Dr. Ahmad Suryanto\",\n  \"nomor_induk_pegawai\": \"197001011995031001\",\n  \"keahlian\": \"Mathematics, Calculus\",\n  \"email_institusional\": \"ahmad@fmipa.ac.id\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/dosen-profile",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "dosen-profile"
+              ]
+            },
+            "description": "Create a new lecturer profile."
+          },
+          "response": []
+        },
+        {
+          "name": "Update Dosen Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama_dosen\": \"Prof. Ahmad Suryanto\",\n  \"keahlian\": \"Mathematics, Calculus, Analysis\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/dosen-profile/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "dosen-profile",
+                "1"
+              ]
+            },
+            "description": "Update lecturer profile information by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Dosen Profile",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/dosen-profile/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "dosen-profile",
+                "1"
+              ]
+            },
+            "description": "Delete a lecturer profile by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Dosen Profile by User",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/dosen-profile/user/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "dosen-profile",
+                "user",
+                "1"
+              ]
+            },
+            "description": "Retrieve lecturer profile for a specific user."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Mahasiswa Profile",
+      "description": "Student profile management endpoints",
+      "item": [
+        {
+          "name": "Get All Mahasiswa Profile",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/mahasiswa-profile",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "mahasiswa-profile"
+              ]
+            },
+            "description": "Retrieve all student profiles."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Mahasiswa Profile by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/mahasiswa-profile/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "mahasiswa-profile",
+                "1"
+              ]
+            },
+            "description": "Retrieve a specific student profile by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Create Mahasiswa Profile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": 2,\n  \"nim\": \"2021001\",\n  \"nama_mahasiswa\": \"Budi Santoso\",\n  \"semester\": 4\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/mahasiswa-profile",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "mahasiswa-profile"
+              ]
+            },
+            "description": "Create a new student profile."
+          },
+          "response": []
+        },
+        {
+          "name": "Update Mahasiswa Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama_mahasiswa\": \"Budi Santoso Wijaya\",\n  \"semester\": 5\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/mahasiswa-profile/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "mahasiswa-profile",
+                "1"
+              ]
+            },
+            "description": "Update student profile information by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Mahasiswa Profile",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/mahasiswa-profile/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "mahasiswa-profile",
+                "1"
+              ]
+            },
+            "description": "Delete a student profile by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Mahasiswa Profile by User",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/mahasiswa-profile/user/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "mahasiswa-profile",
+                "user",
+                "1"
+              ]
+            },
+            "description": "Retrieve student profile for a specific user."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Jawaban",
+      "description": "Answer/Response management endpoints",
+      "item": [
+        {
+          "name": "Get All Jawaban",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/jawaban",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "jawaban"
+              ]
+            },
+            "description": "Retrieve all answers."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Jawaban by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/jawaban/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "jawaban",
+                "1"
+              ]
+            },
+            "description": "Retrieve a specific answer by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Submit Jawaban",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "tugas_id",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "jawaban",
+                  "value": "According to the theorem...\",\n  \"type\": \"text\"",
+                  "type": "text"
+                },
+                {
+                  "key": "file_jawaban",
+                  "type": "file",
+                  "src": "path/to/answer.pdf"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/jawaban",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "jawaban"
+              ]
+            },
+            "description": "Submit an answer to an assignment."
+          },
+          "response": []
+        },
+        {
+          "name": "Update Jawaban",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jawaban\": \"Updated answer text\",\n  \"nilai\": 85\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/jawaban/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "jawaban",
+                "1"
+              ]
+            },
+            "description": "Update answer information or grade by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Jawaban",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/jawaban/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "jawaban",
+                "1"
+              ]
+            },
+            "description": "Delete an answer by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Jawaban by Tugas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/jawaban/tugas/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "jawaban",
+                "tugas",
+                "1"
+              ]
+            },
+            "description": "Retrieve all answers for a specific assignment."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Jawaban by User",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/jawaban/user/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "jawaban",
+                "user",
+                "1"
+              ]
+            },
+            "description": "Retrieve all answers submitted by a specific user."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Links",
+      "description": "Link management endpoints",
+      "item": [
+        {
+          "name": "Get All Links",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/links",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "links"
+              ]
+            },
+            "description": "Retrieve all links."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Link by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/links/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "links",
+                "1"
+              ]
+            },
+            "description": "Retrieve a specific link by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Create Link",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"https://example.com/resource\",\n  \"short_url\": \"example\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/links",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "links"
+              ]
+            },
+            "description": "Create a new link."
+          },
+          "response": []
+        },
+        {
+          "name": "Update Link",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"https://newexample.com/resource\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/links/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "links",
+                "1"
+              ]
+            },
+            "description": "Update link information by ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Link",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/links/1",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "links",
+                "1"
+              ]
+            },
+            "description": "Delete a link by ID."
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "api_token",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

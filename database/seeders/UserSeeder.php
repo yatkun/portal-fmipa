@@ -21,30 +21,35 @@ class UserSeeder extends Seeder
                     'nama' => 'Admin',
                     'nidn' => 'admin',
                     'level' => 'Admin',
+                    'is_active' => '1',
                     'password' => bcrypt('admin'),
                 ],
                 [
                     'nama' => 'Dosen 1',
                     'nidn' => 'dosen1',
                     'level' => 'Dosen',
+                    'is_active' => '1',
                     'password' => bcrypt('dosen1'),
                 ],
                 [
                     'nama' => 'Mahasiswa 1',
                     'nidn' => 'mahasiswa1',
                     'level' => 'Mahasiswa',
+                    'is_active' => '1',
                     'password' => bcrypt('mahasiswa1'),
                 ],
                 [
                     'nama' => 'Mahasiswa 2',
                     'nidn' => 'mahasiswa2',
                     'level' => 'Mahasiswa',
+                    'is_active' => '1',
                     'password' => bcrypt('mahasiswa2'),
                 ],
                 [
                     'nama' => 'Dosen 2',
                     'nidn' => 'dosen2',
                     'level' => 'Dosen',
+                    'is_active' => '1',
                     'password' => bcrypt('dosen2'),
                 ]
             ]
