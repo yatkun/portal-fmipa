@@ -133,12 +133,12 @@ class KelasApiController extends Controller
             ], 404);
         }
 
-        // Check if user is mahasiswa
-        if ($user->mahasiswaProfile) {
-            // Get kelas dari kelas_user (pivot table) - enrolled classes
+        // Check user level - use level field instead of profile existence
+        if ($user->level === 'Mahasiswa') {
+            // Get kelas dari kelas_user (pivot table) - enrolled classes for mahasiswa
             $kelas = $user->manykelas;
         } else {
-            // Get kelas dari kelas (kelas.user_id) - created classes (for dosen)
+            // Get kelas dari kelas (kelas.user_id) - created classes (for dosen and others)
             $kelas = $user->kelas;
         }
 
@@ -146,6 +146,130 @@ class KelasApiController extends Controller
             'status' => 'success',
             'data' => KelasResource::collection($kelas),
             'message' => 'User kelas retrieved successfully'
+        ], 200);
+    }
+
+    /**
+     * Enroll mahasiswa to a kelas
+     */
+    public function enrollMahasiswa(Request $request, $kelasId)
+    {
+        $kelas = Kelas::find($kelasId);
+
+        if (!$kelas) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Kelas not found'
+            ], 404);
+        }
+
+        $validated = $request->validate([
+            'mahasiswa_ids' => 'required|array',
+            'mahasiswa_ids.*' => 'required|exists:users,id'
+        ]);
+
+        try {
+            $successCount = 0;
+            $errorMessages = [];
+
+            foreach ($validated['mahasiswa_ids'] as $mahasiswaId) {
+                $user = \App\Models\User::find($mahasiswaId);
+
+                if ($user->level !== 'Mahasiswa') {
+                    $errorMessages[] = "User ID {$mahasiswaId} is not a mahasiswa";
+                    continue;
+                }
+
+                // Check if already enrolled
+                if ($kelas->users()->where('user_id', $mahasiswaId)->exists()) {
+                    $errorMessages[] = "User ID {$mahasiswaId} is already enrolled";
+                    continue;
+                }
+
+                $kelas->users()->attach($mahasiswaId);
+                $successCount++;
+            }
+
+            return response()->json([
+                'status' => 'success',
+                'data' => [
+                    'enrolled_count' => $successCount,
+                    'errors' => $errorMessages
+                ],
+                'message' => "{$successCount} mahasiswa enrolled successfully"
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Failed to enroll mahasiswa',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
+     * Remove mahasiswa from kelas
+     */
+    public function unenrollMahasiswa($kelasId, $mahasiswaId)
+    {
+        $kelas = Kelas::find($kelasId);
+
+        if (!$kelas) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Kelas not found'
+            ], 404);
+        }
+
+        $user = \App\Models\User::find($mahasiswaId);
+
+        if (!$user) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Mahasiswa not found'
+            ], 404);
+        }
+
+        try {
+            $kelas->users()->detach($mahasiswaId);
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Mahasiswa removed from kelas successfully'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Failed to remove mahasiswa from kelas',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
+     * Get all mahasiswa in a kelas
+     */
+    public function getMahasiswa($kelasId)
+    {
+        $kelas = Kelas::find($kelasId);
+
+        if (!$kelas) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Kelas not found'
+            ], 404);
+        }
+
+        $mahasiswa = $kelas->users()
+            ->where('level', 'Mahasiswa')
+            ->select('id', 'nama', 'nidn', 'level')
+            ->get();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $mahasiswa,
+            'total' => $mahasiswa->count(),
+            'message' => 'Mahasiswa in kelas retrieved successfully'
         ], 200);
     }
 }

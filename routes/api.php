@@ -51,10 +51,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('kelas')->group(function () {
         Route::get('/', [KelasApiController::class, 'index']);
         Route::post('/', [KelasApiController::class, 'store']);
+        Route::get('/user/{userId}', [KelasApiController::class, 'getByUser']);
+        Route::post('/{kelasId}/enroll', [KelasApiController::class, 'enrollMahasiswa']);
+        Route::delete('/{kelasId}/mahasiswa/{mahasiswaId}', [KelasApiController::class, 'unenrollMahasiswa']);
+        Route::get('/{kelasId}/mahasiswa', [KelasApiController::class, 'getMahasiswa']);
         Route::get('/{id}', [KelasApiController::class, 'show']);
         Route::put('/{id}', [KelasApiController::class, 'update']);
         Route::delete('/{id}', [KelasApiController::class, 'destroy']);
-        Route::get('/user/{userId}', [KelasApiController::class, 'getByUser']);
     });
 
     // Tugas Resources
