@@ -120,10 +120,28 @@ class KelasApiController extends Controller
 
     /**
      * Get kelas by user_id
+     * Handles both dosen (created kelas) and mahasiswa (enrolled kelas)
      */
     public function getByUser($userId)
     {
-        $kelas = Kelas::where('user_id', $userId)->get();
+        $user = \App\Models\User::find($userId);
+
+        if (!$user) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'User not found'
+            ], 404);
+        }
+
+        // Check if user is mahasiswa
+        if ($user->mahasiswaProfile) {
+            // Get kelas dari kelas_user (pivot table) - enrolled classes
+            $kelas = $user->manykelas;
+        } else {
+            // Get kelas dari kelas (kelas.user_id) - created classes (for dosen)
+            $kelas = $user->kelas;
+        }
+
         return response()->json([
             'status' => 'success',
             'data' => KelasResource::collection($kelas),
