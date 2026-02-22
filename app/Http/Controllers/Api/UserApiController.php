@@ -29,14 +29,14 @@ class UserApiController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'nama' => 'required|string|max:255',
             'nidn' => 'required|string|max:255|unique:users',
             'password' => 'required|string|min:6',
             'level' => 'required|in:Dosen,Mahasiswa,Admin,Tendik'
         ]);
 
         $user = User::create([
-            'name' => $validated['name'],
+            'nama' => $validated['nama'],
             'nidn' => $validated['nidn'],
             'password' => Hash::make($validated['password']),
             'level' => $validated['level']
@@ -85,7 +85,7 @@ class UserApiController extends Controller
         }
 
         $validated = $request->validate([
-            'name' => 'sometimes|string|max:255',
+            'nama' => 'sometimes|string|max:255',
             'nidn' => 'sometimes|string|max:255|unique:users,nidn,' . $id,
             'level' => 'sometimes|in:Dosen,Mahasiswa,Admin,Tendik'
         ]);
