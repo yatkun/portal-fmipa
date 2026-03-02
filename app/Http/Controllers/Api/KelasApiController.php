@@ -262,7 +262,6 @@ class KelasApiController extends Controller
 
         $mahasiswa = $kelas->users()
             ->where('level', 'Mahasiswa')
-            ->select('id', 'nama', 'nidn', 'level')
             ->get();
 
         return response()->json([
